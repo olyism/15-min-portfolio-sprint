@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "example-project",
+    "image": "https://placehold.co/800x450?text=Project",
+    "title": "Example Project",
+    "subheading": "Acceleration activation from hours to minutes",
+    "tags": ["UI design", "Growth", "ReactJS"]
+  },
+  {
+    "slug": "another-case-study",
+    "image": "https://placehold.co/800x450?text=Project",
+    "title": "Another Case Study",
+    "subheading": "Short descriptor for the grid",
+    "tags": ["UX research", "Product strategy"]
+  }
+]
