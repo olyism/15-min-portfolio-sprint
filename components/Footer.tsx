@@ -12,6 +12,9 @@ export default function Footer() {
           <Link href="/blog" className="hover:text-neutral-700 dark:hover:text-neutral-300">
             Blog
           </Link>
+          <Link href="/resume" className="hover:text-neutral-700 dark:hover:text-neutral-300">
+            Resume
+          </Link>
           <Link href="/contact" className="hover:text-neutral-700 dark:hover:text-neutral-300">
             Contact
           </Link>

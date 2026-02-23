@@ -8,6 +8,7 @@ Go from a blank folder to a deployed portfolio in the time it takes to drink a c
 - **Projects** — List of case studies with cards linking to full case study pages
 - **Case studies** — Structured pages: The What (hero, name, catchphrase), Problem, Solution, Results, Lessons, optional Gallery
 - **Blog** — A single list page (title, date, excerpt, link); links can point to external sites (e.g. Medium, Substack)
+- **Resume** — Prompt template to turn LinkedIn, existing resume, or free text into resume content (copy and run in an AI assistant)
 - **Contact** — Simple contact page (edit copy and CTA in code)
 
 **Stack**: Next.js (App Router), Tailwind CSS, deploy to Vercel. Content is file-based: Markdown for case studies, JSON for the project grid and blog list. No CMS required.
@@ -19,7 +20,7 @@ Go from a blank folder to a deployed portfolio in the time it takes to drink a c
 
 ## Get started
 
-1. **Clone** this repo (or use it as a template).
+1. **Clone** or download this repo. Feel free to use it as a template
 2. **Install** dependencies:
    ```bash
    npm install
@@ -41,6 +42,7 @@ Go from a blank folder to a deployed portfolio in the time it takes to drink a c
 | **Project grid** | `content/projects.json` — one object per project: `slug`, `image`, `title`, `subheading`, `tags` |
 | **Blog list** | `content/blog.json` — one object per entry: `title`, `date`, `excerpt`, `url` (external URLs OK) |
 | **Case studies** | One Markdown file per project in `content/case-studies/[slug].md`. Use the frontmatter and section headings shown in `content/case-studies/example-project.md`. |
+| **Resume prompt** | Edit the copyable prompt in `app/resume/page.tsx` if you want to change the instructions. |
 | **Contact copy and CTA** | `app/contact/page.tsx` |
 | **Site name and nav** | `components/Header.tsx`, `components/Footer.tsx` |
 

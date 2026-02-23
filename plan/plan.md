@@ -47,6 +47,8 @@ designer-portfolio-template/
 │   │   └── [slug]/page.tsx         # Case study dynamic route
 │   ├── blog/
 │   │   └── page.tsx                # Blog list
+│   ├── resume/
+│   │   └── page.tsx                # Resume: copyable prompt template (no rendered resume)
 │   └── contact/
 │       └── page.tsx                # Contact page
 ├── components/
@@ -147,6 +149,7 @@ Sections (Problem, Solution, Results, Lessons) are parsed from the body (e.g. by
 | `/projects` | app/projects/page.tsx + projects.json | Grid/list of case studies |
 | `/projects/[slug]` | app/projects/[slug]/page.tsx + content/case-studies/*.md | Full case study page |
 | `/blog` | app/blog/page.tsx + blog.json | List of blog entries |
+| `/resume` | app/resume/page.tsx | Copyable prompt template (LinkedIn/resume/free text → AI); no resume content rendered |
 | `/contact` | app/contact/page.tsx | Copy in JSX; optional form |
 
 ## Deployment

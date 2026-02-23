@@ -3,7 +3,7 @@
 **Feature Branch**: `designer-portfolio-template`
 **Created**: 2025-02-22
 **Status**: Approved
-**Input**: A designer portfolio template that lets designers go from clone to deployed site in ~15 minutes. Strong value-prop home, project case studies, blog list, contact. Built with Spec Kit (SDD), Next.js, Tailwind, Vercel.
+**Input**: A designer portfolio template that lets designers go from clone to deployed site in ~15 minutes. Strong value-prop home, project case studies, blog list, resume prompt template, contact. Built with Spec Kit (SDD), Next.js, Tailwind, Vercel.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -68,6 +68,21 @@ A visitor can reach the designer via a Contact page or section (form or CTA such
 
 ---
 
+### User Story 5 - Designer uses resume prompt template (Priority: P2)
+
+A designer (or anyone customizing the template) can open the Resume page and copy a prompt template to run in an AI assistant (e.g. Cursor, ChatGPT). The prompt guides them to provide context such as a LinkedIn profile URL, existing resume text, or free-form notes, and asks the AI to draft resume content suitable for the web.
+
+**Why this priority**: Supports content creation without adding a CMS; the page is instructions and copy-paste only (no rendered resume on the page).
+
+**Independent Test**: Can be fully tested by opening `/resume` and verifying the prompt template is visible and copyable (e.g. via a copy button).
+
+**Acceptance Scenarios**:
+
+1. **Given** the site is deployed, **When** a visitor opens `/resume`, **Then** they see instructions and a copyable prompt template.
+2. **Given** the Resume page, **When** the user copies the prompt, **Then** the template includes guidance for providing context (LinkedIn, existing resume, or free text) and a clear place to paste that context before running the prompt in an AI assistant.
+
+---
+
 ### Edge Cases
 
 - What happens when a case study slug does not exist? Show a 404 or friendly “not found” page.
@@ -83,9 +98,10 @@ A visitor can reach the designer via a Contact page or section (form or CTA such
 - **FR-003**: System MUST serve dynamic case study pages at `/projects/[slug]` with content from Markdown (The What, Problem, Solution, Results, Lessons, optional Gallery).
 - **FR-004**: System MUST serve a Blog list page at `/blog` with entries (title, date, excerpt, url); url may be external.
 - **FR-005**: System MUST serve a Contact page at `/contact` with editable copy and CTA or form.
-- **FR-006**: System MUST read case studies from Markdown files (frontmatter + body sections).
-- **FR-007**: System MUST read project grid metadata from JSON (image, title, subheading, tags).
-- **FR-008**: System MUST read blog list from JSON (title, date, excerpt, url).
+- **FR-006**: System MUST serve a Resume page at `/resume` with a copyable prompt template that guides the user to provide context (LinkedIn profile, existing resume, or free text) for use in an AI assistant; the page does not render resume content.
+- **FR-007**: System MUST read case studies from Markdown files (frontmatter + body sections).
+- **FR-008**: System MUST read project grid metadata from JSON (image, title, subheading, tags).
+- **FR-009**: System MUST read blog list from JSON (title, date, excerpt, url).
 
 ### Key Entities
 
@@ -98,5 +114,5 @@ A visitor can reach the designer via a Contact page or section (form or CTA such
 ### Measurable Outcomes
 
 - **SC-001**: A designer can clone the template repo, replace placeholder content (copy, images, projects.json, blog.json, case study .md files), and deploy to Vercel in under 15 minutes.
-- **SC-002**: All pages (home, projects, project/[slug], blog, contact) load and render without errors.
+- **SC-002**: All pages (home, projects, project/[slug], blog, resume, contact) load and render without errors.
 - **SC-003**: Case study pages render the full content structure (The What, Problem, Solution, Results, Lessons, optional Gallery) from a single Markdown file per project.
