@@ -2,6 +2,8 @@
 
 Go from a blank folder to a deployed portfolio in the time it takes to drink a coffee. Clone this template, swap in your content, and ship.
 
+[Here's the explainer video](https://www.youtube.com/watch?v=q7Ks6AUOjAo)
+
 ## What you get
 
 - **Home** — Hero with value proposition, optional “Worked with” logos, and a grid of project case studies
