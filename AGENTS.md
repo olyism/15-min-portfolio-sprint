@@ -18,4 +18,9 @@ This project is the **15-Minute Portfolio Sprint** template: a Next.js + Tailwin
 
 - Adding a new page or route: align with `spec/spec.md` and `plan/plan.md`; update the plan if the IA changes.
 - Changing case study structure: update `lib/markdown.ts` (section headings), `content/case-studies/example-project.md`, and the spec/plan.
-- Content schema: document any new JSON or frontmatter fields in the README “Content guide” and in `plan/plan.md`.
+- Content schema: document any new JSON or frontmatter fields in the README "Content guide" and in `plan/plan.md`.
+
+## Learned Workspace Facts
+
+- Resume page at `/resume` provides a copyable prompt template for generating resume content from LinkedIn, existing resume, or free text; the page does not render resume content. Documented in spec as User Story 5 and FR-006.
+- Case study body markdown is rendered with `react-markdown` and `remark-gfm` (not custom parsing); `@tailwindcss/typography` is used for prose styling in case study sections.
