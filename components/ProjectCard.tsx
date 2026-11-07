@@ -1,40 +1,59 @@
 import Link from "next/link";
-import Image from "next/image";
-import type { ProjectItem } from "@/lib/content";
+import type { CaseStudy } from "@/lib/content";
+import { cn } from "@/lib/cn";
+import { ArrowRight } from "./icons";
+import { Media } from "./Media";
+import { TagList } from "./Tag";
+import { getProjectDemo } from "@/lib/project-demos";
+import { ProjectVisual } from "./ProjectVisual";
 
-export default function ProjectCard({ project }: { project: ProjectItem }) {
+/** A project tile. `size="large"` spans the full width with a wider image. */
+export function ProjectCard({
+  project,
+  size = "default",
+  headingLevel = "h3",
+}: {
+  project: CaseStudy;
+  size?: "default" | "large";
+  headingLevel?: "h2" | "h3";
+}) {
+  const large = size === "large";
+  const Heading = headingLevel;
+  const demo = getProjectDemo(project.theme);
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group block rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors"
-    >
-      <div className="aspect-video relative bg-neutral-100 dark:bg-neutral-800">
-        <Image
-          src={project.image}
-          alt=""
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-      </div>
-      <div className="p-4">
-        <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 group-hover:underline">
-          {project.title}
-        </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
-          {project.subheading}
-        </p>
-        <div className="flex flex-wrap gap-2 mt-3">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
-            >
-              {tag}
-            </span>
-          ))}
+    <Link href={`/projects/${project.slug}`} className="group reveal block">
+      <div className="overflow-hidden rounded-card shadow-card transition-shadow duration-(--duration-base) group-hover:shadow-lift">
+        <div className="transition-transform duration-(--duration-slow) ease-(--ease-out) group-hover:scale-[1.025]">
+          {demo && project.theme ? <ProjectVisual theme={project.theme} demo={demo} compact={!large} /> : <Media
+            img={project.cover}
+            ratio={large ? "16/8" : "4/3"}
+            sizes={large ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+            showPrompt={large}
+            className="rounded-none"
+          />}
         </div>
       </div>
+      <div className={cn("mt-5 flex flex-col gap-2", large && "md:flex-row md:items-start md:justify-between md:gap-10")}>
+        <div className="max-w-2xl">
+          <Heading className={cn("font-semibold", large ? "text-title" : "text-heading")}>
+            {project.title}
+            <ArrowRight className="ml-1.5 inline-block -translate-x-1 opacity-0 transition-all duration-(--duration-base) group-hover:translate-x-0 group-hover:opacity-100" />
+          </Heading>
+          <p className="mt-1.5 text-fg-muted">{project.summary}</p>
+          {project.specialty && <span className="project-card-specialty">{project.specialty}</span>}
+        </div>
+        <TagList tags={project.tags} className={cn("mt-2", large && "md:mt-1 md:justify-end")} />
+      </div>
     </Link>
+  );
+}
+
+export function ProjectGrid({ projects }: { projects: CaseStudy[] }) {
+  return (
+    <div className="grid gap-x-8 gap-y-16 md:grid-cols-2">
+      {projects.map((p) => (
+        <ProjectCard key={p.slug} project={p} headingLevel="h2" />
+      ))}
+    </div>
   );
 }

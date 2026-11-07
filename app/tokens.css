@@ -1,0 +1,193 @@
+/*
+ * DESIGN TOKENS: the one file you edit to restyle the whole site.
+ *
+ * - Colours use light-dark(LIGHT, DARK). The site follows the visitor's system
+ *   setting, and the theme toggle can override it.
+ * - Every token here becomes a Tailwind class: --color-fg-muted → text-fg-muted,
+ *   --radius-card → rounded-card, --text-display → text-display, and so on.
+ * - The /design-system page reads this file, so changes show up there.
+ * - The text after each token (in comments) is shown on /design-system. Keep it short.
+ * - Lines like "@group Colour" set the section headings on /design-system.
+ */
+
+@theme static {
+  /* @group Colour */
+  --color-*: initial;
+  --color-bg: light-dark(#fbfbfd, #000000); /* Page background */
+  --color-bg-subtle: light-dark(#f2f2f5, #101012); /* Alternate sections, placeholders */
+  --color-bg-elevated: light-dark(#ffffff, #1b1b1f); /* Cards, menus */
+  --color-fg: light-dark(#111114, #f5f5f7); /* Headings and primary text */
+  --color-fg-muted: light-dark(#5f5f66, #a8a8b0); /* Body copy, descriptions */
+  --color-fg-subtle: light-dark(#6e6e76, #8a8a93); /* Captions, meta */
+  --color-border: light-dark(#d9d9de, #2e2e33); /* Dividers, outlines */
+  --color-border-subtle: light-dark(#e9e9ed, #1f1f23); /* Hairlines */
+  --color-accent: light-dark(#0a66d8, #4c9aff); /* Links, focus, highlights */
+  --color-accent-subtle: light-dark(#e8f1fd, #0d2140); /* Accent backgrounds */
+  --color-positive: light-dark(#1d7f3c, #3ccf6e); /* Availability, success */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* @group Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter",
+    "Segoe UI", system-ui, sans-serif; /* Body and display */
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace; /* Code, tokens */
+
+  --text-hero: clamp(3rem, 6.5vw + 1rem, 6.5rem); /* Home headline */
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.035em;
+  --text-display: clamp(2.5rem, 4vw + 1rem, 4.5rem); /* Page titles */
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --text-title: clamp(1.75rem, 1.5vw + 1.1rem, 2.5rem); /* Section titles */
+  --text-title--line-height: 1.12;
+  --text-title--letter-spacing: -0.022em;
+  --text-heading: 1.375rem; /* Card titles */
+  --text-heading--line-height: 1.25;
+  --text-heading--letter-spacing: -0.015em;
+  --text-lead: clamp(1.1875rem, 0.6vw + 1rem, 1.5rem); /* Intros, TL;DRs */
+  --text-lead--line-height: 1.45;
+  --text-lead--letter-spacing: -0.012em;
+  --text-body: 1.0625rem; /* Paragraphs */
+  --text-body--line-height: 1.6;
+  --text-small: 0.9375rem; /* UI text */
+  --text-small--line-height: 1.45;
+  --text-caption: 0.8125rem; /* Meta, labels */
+  --text-caption--line-height: 1.4;
+
+  /* @group Spacing */
+  --spacing: 0.25rem; /* Base unit: p-4 = 1rem */
+  --spacing-gutter: clamp(1.25rem, 4vw, 2.5rem); /* Page side padding */
+  --spacing-section: clamp(5rem, 10vw, 9rem); /* Space between big sections */
+  --container-content: 76rem; /* Main column width */
+  --container-reading: 42rem; /* Reading width */
+
+  /* @group Radius */
+  --radius-sm: 0.5rem; /* Inputs, small chips */
+  --radius-md: 0.875rem; /* Buttons */
+  --radius-lg: 1.25rem; /* Panels */
+  --radius-card: 1.75rem; /* Project tiles, images */
+  --radius-pill: 999px; /* Tags, toggles */
+
+  /* @group Elevation */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.12); /* Resting card */
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.06), 0 24px 48px -20px rgb(0 0 0 / 0.25); /* Hovered card */
+
+  /* @group Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* Default easing */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* Playful overshoot */
+  --duration-fast: 160ms; /* Hover, press */
+  --duration-base: 320ms; /* Most transitions */
+  --duration-slow: 700ms; /* Reveals */
+}
+
+/* Project worlds are scoped by data-world. Keep their palettes here so the
+   design-system page remains the reference for every project identity. */
+@theme static {
+  /* @group Project typography */
+  --font-project-sans: "DM Sans", var(--font-sans); /* Friendly product and service interfaces */
+  --font-project-grotesk: "Sora", var(--font-sans); /* Systems, engineering and strategy */
+  --font-project-editorial: "Literata", Georgia, serif; /* Research and cinema display */
+  --text-specimen: clamp(2rem, 7cqw, 5rem); /* Project artwork headline */
+  --text-specimen--line-height: 1.04;
+  --text-specimen--letter-spacing: -0.03em;
+  --text-specimen-heading: clamp(1.25rem, 3cqw, 2rem); /* Product artifact section heading */
+  --text-specimen-research: clamp(2.5rem, 9cqw, 6rem); /* Research journal display */
+  --text-specimen-cinema: clamp(3rem, 11cqw, 7rem); /* Cinema programme display */
+  --text-specimen-ticket: clamp(1.75rem, 4cqw, 3rem); /* Film title on ticket */
+  --text-specimen-compact: clamp(2.25rem, 8cqw, 4rem); /* Compact project card display */
+  --text-specimen-cinema-compact: clamp(3rem, 10cqw, 5rem); /* Compact cinema display */
+  --spacing-artwork-compact: clamp(1.25rem, 3vw, 2.5rem); /* Compact artifact padding */
+  --radius-world-sharp: 0.25rem; /* Engineering and strategy corners */
+  --radius-world-soft: 1rem; /* People-focused product corners */
+  --spacing-artwork: clamp(1.5rem, 4vw, 4rem); /* Project specimen padding */
+  --spacing-case: clamp(3rem, 7vw, 7rem); /* Project narrative rhythm */
+  --container-specimen: 64rem; /* Maximum specimen interior */
+
+  /* @group Relay / incident ledger */
+  --color-relay-bg: light-dark(#0d0e12, #090a0d); /* Relay ground */
+  --color-relay-panel: light-dark(#17181e, #111217); /* Relay reading surface */
+  --color-relay-fg: light-dark(#f4f3fa, #f4f3fa); /* Relay primary ink */
+  --color-relay-muted: light-dark(#b9b7c7, #b9b7c7); /* Relay secondary ink */
+  --color-relay-accent: light-dark(#c6b2ff, #c6b2ff); /* Relay action colour */
+  --color-relay-mark: light-dark(#302b43, #302b43); /* Relay selected surface */
+
+  /* @group Tandem / everyday coordination */
+  --color-tandem-bg: light-dark(#fae6d5, #35251f); /* Tandem ground */
+  --color-tandem-panel: light-dark(#fffaf4, #261c19); /* Tandem reading surface */
+  --color-tandem-fg: light-dark(#39251f, #fff2e6); /* Tandem primary ink */
+  --color-tandem-muted: light-dark(#705247, #d9b8a7); /* Tandem secondary ink */
+  --color-tandem-accent: light-dark(#b43927, #ffb99c); /* Tandem action colour */
+  --color-tandem-mark: light-dark(#f8d3bd, #58392d); /* Tandem selected surface */
+
+  /* @group Formwork / component workshop */
+  --color-formwork-bg: light-dark(#e8effe, #15213b); /* Formwork ground */
+  --color-formwork-panel: light-dark(#f9fbff, #0e1729); /* Formwork reading surface */
+  --color-formwork-fg: light-dark(#16243b, #eef3ff); /* Formwork primary ink */
+  --color-formwork-muted: light-dark(#52617c, #b6c5df); /* Formwork secondary ink */
+  --color-formwork-accent: light-dark(#204aca, #a7bcff); /* Formwork action colour */
+  --color-formwork-mark: light-dark(#d9e4ff, #293e69); /* Formwork selected surface */
+
+  /* @group Common Ground / field journal */
+  --color-research-bg: light-dark(#e9e8d5, #243b2f); /* Common Ground ground */
+  --color-research-panel: light-dark(#f7f3e9, #18291f); /* Common Ground reading surface */
+  --color-research-fg: light-dark(#253d31, #f1f1df); /* Common Ground primary ink */
+  --color-research-muted: light-dark(#58644f, #becbb3); /* Common Ground secondary ink */
+  --color-research-accent: light-dark(#486043, #c6d49e); /* Common Ground action colour */
+  --color-research-mark: light-dark(#dde3c9, #354b2c); /* Common Ground selected surface */
+
+  /* @group Plainly / thoughtful service */
+  --color-plainly-bg: light-dark(#e3f1fc, #18354d); /* Plainly ground */
+  --color-plainly-panel: light-dark(#f9fcff, #112638); /* Plainly reading surface */
+  --color-plainly-fg: light-dark(#17344d, #edf7ff); /* Plainly primary ink */
+  --color-plainly-muted: light-dark(#4a647a, #b1cddd); /* Plainly secondary ink */
+  --color-plainly-accent: light-dark(#174eb6, #b0d6ff); /* Plainly action colour */
+  --color-plainly-mark: light-dark(#cce7fc, #254d6b); /* Plainly selected surface */
+
+  /* @group Waypoint / decision memo */
+  --color-waypoint-bg: light-dark(#e8bd42, #4b3b17); /* Waypoint ground */
+  --color-waypoint-panel: light-dark(#fbf9ef, #25251e); /* Waypoint reading surface */
+  --color-waypoint-fg: light-dark(#27261e, #fff7dc); /* Waypoint primary ink */
+  --color-waypoint-muted: light-dark(#51472c, #cec4a2); /* Waypoint secondary ink */
+  --color-waypoint-accent: light-dark(#63501a, #f4cd62); /* Waypoint action colour */
+  --color-waypoint-mark: light-dark(#f6e3a9, #4e4122); /* Waypoint selected surface */
+
+  /* @group Afterhours / film programme */
+  --color-cinema-bg: light-dark(#4c151d, #280e14); /* Afterhours ground */
+  --color-cinema-panel: light-dark(#171313, #110e0e); /* Afterhours reading surface */
+  --color-cinema-fg: light-dark(#f7efe5, #f7efe5); /* Afterhours primary ink */
+  --color-cinema-muted: light-dark(#d9bdb7, #d9bdb7); /* Afterhours secondary ink */
+  --color-cinema-accent: light-dark(#ffab92, #ffab92); /* Afterhours action colour */
+  --color-cinema-mark: light-dark(#741b27, #601824); /* Afterhours selected surface */
+}
+
+@theme static {
+  /* @group Independent project identities */
+  --font-relay: "Inter", var(--font-sans); /* Relay precision interface and narrative */
+  --font-tandem: "Outfit", var(--font-sans); /* Tandem warm geometric voice */
+  --font-formwork: "IBM Plex Mono", var(--font-mono); /* Formwork exact technical headings */
+  --font-research: "Newsreader", Georgia, serif; /* Common Ground editorial reading */
+  --font-plainly: "Manrope", var(--font-sans); /* Plainly accessible service typography */
+  --font-waypoint: "Archivo", var(--font-sans); /* Waypoint decisive strategy display */
+  --font-cinema: "Bodoni Moda", Georgia, serif; /* Afterhours cinematic editorial display */
+  --text-world-title: clamp(2.5rem, 6vw, 6rem); /* Independent brand case-study title */
+  --text-world-technical: clamp(2rem, 4.5vw, 4.25rem); /* Technical case-study title */
+  --text-world-editorial: clamp(3rem, 7vw, 6rem); /* Editorial case-study title */
+  --text-world-sample: clamp(2rem, 5vw, 4.5rem); /* Project design-system type specimen */
+  --spacing-world-inset: clamp(1.25rem, 3vw, 3rem); /* Branded panel and system padding */
+  --spacing-world-section: clamp(4rem, 7vw, 7rem); /* Project system section rhythm */
+  --container-world-copy: 68ch; /* Project narrative reading measure */
+}
+
+@theme static {
+  /* @group Relay console and glass */
+  --color-header-glass: light-dark(rgb(251 251 253 / 0.76), rgb(16 16 20 / 0.8)); /* Frosted navigation surface */
+  --color-header-sheen: light-dark(rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.12)); /* Glass upper edge */
+  --blur-header: 28px; /* Navigation backdrop diffusion */
+  --color-relay-positive: light-dark(#a5f3d0, #a5f3d0); /* Verified evidence and graph completion */
+  --color-relay-warning: light-dark(#f4ce8a, #f4ce8a); /* Paused and rejected states */
+  --color-relay-sheen: light-dark(rgb(198 178 255 / 0.09), rgb(198 178 255 / 0.09)); /* Restrained interface sheen */
+  --shadow-relay-edge: inset 0 1px 0 rgb(224 215 255 / 0.13), 0 0 24px -16px rgb(198 178 255 / 0.5); /* Quiet luminous panel edge */
+  --container-relay-console: 19rem; /* Readable desktop trace width */
+  --spacing-relay-logo: 2.75rem; /* Project identity symbol size */
+  --spacing-relay-console-height: 36rem; /* Console scroll area */
+}

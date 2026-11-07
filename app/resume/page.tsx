@@ -1,56 +1,116 @@
-"use client";
+import type { Metadata } from "next";
+import { PrintButton } from "@/components/ActionButtons";
+import { Container } from "@/components/Container";
+import { getResume, getSite } from "@/lib/content";
 
-import { useState } from "react";
+export const metadata: Metadata = { title: "Resume", description: "Experience, skills and education." };
 
-const PROMPT_TEMPLATE = `You are helping me build resume content for my portfolio site. Use the context below to draft a clear, scannable resume (or section) suitable for the web.
-
-## Context I'm providing (choose what you have and paste below)
-
-- **LinkedIn**: [Paste your LinkedIn profile URL or copy-paste the text from your LinkedIn About and Experience sections]
-- **Existing resume**: [Paste your current resume text here]
-- **Free text**: [Or write a few bullets about your background, roles, and key wins]
-
----
-
-PASTE YOUR CONTEXT BELOW THIS LINE:
-`;
+function Heading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="mb-5 border-b border-border-subtle pb-2 text-caption font-semibold tracking-wide text-fg-subtle uppercase">
+      {children}
+    </h2>
+  );
+}
 
 export default function ResumePage() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(PROMPT_TEMPLATE);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const site = getSite();
+  const r = getResume();
+  const host = site.url.replace(/^https?:\/\//, "");
 
   return (
-    <div className="py-16 px-4">
-      <div className="mx-auto max-w-2xl">
-        <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
-          Resume
-        </h1>
-        <p className="text-neutral-600 dark:text-neutral-400 mb-8">
-          Use the prompt below in an AI assistant (e.g. Cursor, ChatGPT) to turn your LinkedIn, existing resume, or notes into polished resume content. Copy the prompt, paste your context where indicated, then run it. Paste the result into your site or docs as you like.
-        </p>
-
-        <div className="relative rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 overflow-hidden">
-          <pre className="p-4 sm:p-6 text-sm text-neutral-800 dark:text-neutral-200 overflow-x-auto whitespace-pre-wrap font-mono">
-            {PROMPT_TEMPLATE}
-          </pre>
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="absolute top-3 right-3 px-3 py-1.5 text-xs font-medium rounded-md bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors"
-          >
-            {copied ? "Copied" : "Copy prompt"}
-          </button>
-        </div>
-
-        <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">
-          Tip: Replace the bracketed placeholders with your actual LinkedIn URL, resume text, or free-form notes before running the prompt.
-        </p>
+    <Container className="py-16 md:py-24 print:py-0">
+      <div className="no-print enter mb-10 flex flex-wrap items-center justify-between gap-4 rounded-lg bg-bg-subtle px-5 py-4">
+        <p className="text-small text-fg-muted">This page is set up for printing. Choose &ldquo;Save as PDF&rdquo; in the print dialog.</p>
+        <PrintButton />
       </div>
-    </div>
+
+      <div className="print-plain rounded-card bg-bg-elevated p-8 shadow-card ring-1 ring-border-subtle md:p-14">
+        <header className="avoid-break flex flex-col gap-6 border-b border-border-subtle pb-8 md:flex-row md:items-end md:justify-between print:flex-row print:items-end print:justify-between">
+          <div>
+            <h1 className="text-display font-semibold print:text-[2.6rem]">{site.name}</h1>
+            <p className="mt-2 text-lead text-fg-muted">{site.role}</p>
+          </div>
+          <ul className="space-y-1 text-small text-fg-muted md:text-right print:text-right">
+            {site.location && <li>{site.location}</li>}
+            <li>
+              <a href={`mailto:${site.email}`} className="hover:text-fg">{site.email}</a>
+            </li>
+            <li>
+              <a href={site.url} className="hover:text-fg">{host}</a>
+            </li>
+          </ul>
+        </header>
+
+        <div className="mt-10 grid gap-12 md:grid-cols-[1fr_15rem] md:gap-16 print:grid-cols-[1fr_13rem] print:gap-10">
+          <div className="space-y-10">
+            <section>
+              <Heading>Profile</Heading>
+              <p className="text-fg-muted text-pretty">{r.summary}</p>
+            </section>
+            <section>
+              <Heading>Experience</Heading>
+              <ol className="space-y-8">
+                {r.experience.map((job) => (
+                  <li key={job.company + job.start} className="avoid-break">
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                      <h3 className="font-semibold">
+                        {job.role} <span className="font-normal text-fg-muted">· {job.company}</span>
+                      </h3>
+                      <p className="text-small text-fg-subtle tabular-nums">
+                        {job.start} – {job.end}
+                      </p>
+                    </div>
+                    <ul className="mt-3 list-disc space-y-1.5 pl-5 text-small text-fg-muted marker:text-fg-subtle">
+                      {job.highlights.map((h) => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </div>
+
+          <aside className="space-y-10">
+            <section>
+              <Heading>Skills</Heading>
+              <div className="space-y-5">
+                {r.skills.map((g) => (
+                  <div key={g.group}>
+                    <h3 className="text-small font-semibold">{g.group}</h3>
+                    <p className="mt-1 text-small text-fg-muted">{g.items.join(" · ")}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+            <section>
+              <Heading>Education</Heading>
+              {r.education.map((e) => (
+                <div key={e.school} className="mb-4 text-small">
+                  <p className="font-semibold">{e.qualification}</p>
+                  <p className="text-fg-muted">
+                    {e.school}, {e.year}
+                  </p>
+                </div>
+              ))}
+            </section>
+            {r.awards && r.awards.length > 0 && (
+              <section>
+                <Heading>Awards</Heading>
+                {r.awards.map((a) => (
+                  <div key={a.title} className="mb-4 text-small">
+                    <p className="font-semibold">{a.title}</p>
+                    <p className="text-fg-muted">
+                      {[a.detail, a.year].filter(Boolean).join(", ")}
+                    </p>
+                  </div>
+                ))}
+              </section>
+            )}
+          </aside>
+        </div>
+      </div>
+    </Container>
   );
 }

@@ -1,40 +1,73 @@
-import Link from "next/link";
+"use client";
 
-export default function Header() {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { cn } from "@/lib/cn";
+import { Close, Menu } from "./icons";
+import { ThemeToggle } from "./ThemeToggle";
+
+type NavItem = { label: string; href: string };
+
+export function Header({ name, nav }: { name: string; nav: NavItem[] }) {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+
   return (
-    <header className="border-b border-neutral-200 dark:border-neutral-800">
-      <nav className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="font-semibold text-lg">
-          Your Name
+    <header className="site-header no-print sticky top-0 z-50 border-b border-border-subtle">
+      <nav className="mx-auto box-content flex h-16 max-w-content items-center justify-between gap-6 px-gutter">
+        <Link href="/" className="text-small font-semibold tracking-tight" onClick={() => setOpen(false)}>
+          {name}
         </Link>
-        <ul className="flex gap-6">
-          <li>
-            <Link href="/" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100">
-              Home
+
+        <div className="hidden items-center gap-1 md:flex">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className="rounded-pill px-3 py-1.5 text-small text-fg transition-colors hover:underline aria-[current=page]:font-medium"
+            >
+              {item.label}
             </Link>
-          </li>
-          <li>
-            <Link href="/projects" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100">
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link href="/blog" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100">
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link href="/resume" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100">
-              Resume
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100">
-              Contact
-            </Link>
-          </li>
-        </ul>
+          ))}
+          <ThemeToggle className="ml-3" />
+        </div>
+
+        <button
+          type="button"
+          className="-mr-2 inline-flex size-10 items-center justify-center rounded-pill md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((o) => !o)}
+        >
+          {open ? <Close /> : <Menu />}
+        </button>
       </nav>
+
+      <div
+        id="mobile-menu"
+        hidden={!open}
+        className="border-t border-border-subtle px-gutter pt-4 pb-8 md:hidden"
+      >
+        <ul className="flex flex-col">
+          {nav.map((item, i) => (
+            <li key={item.href} className="enter" style={{ "--i": i } as React.CSSProperties}>
+              <Link
+                href={item.href}
+                onClick={() => setOpen(false)}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={cn("block py-2.5 text-title font-semibold text-fg")}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <ThemeToggle className="mt-6" />
+      </div>
     </header>
   );
 }

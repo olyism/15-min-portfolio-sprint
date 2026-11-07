@@ -1,19 +1,18 @@
-import { getBlog } from "@/lib/content";
-import BlogList from "@/components/BlogList";
+import type { Metadata } from "next";
+import { Container } from "@/components/Container";
+import { PostList } from "@/components/PostCard";
+import { getPosts } from "@/lib/content";
+
+export const metadata: Metadata = { title: "Resources", description: "Notes on design, code and AI." };
 
 export default function BlogPage() {
-  const entries = getBlog();
   return (
-    <div className="py-12 px-4">
-      <div className="mx-auto max-w-2xl">
-        <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
-          Blog
-        </h1>
-        <p className="text-neutral-600 dark:text-neutral-400 mb-10">
-          Articles and writing. Links may point to external sites.
-        </p>
-        <BlogList entries={entries} />
-      </div>
-    </div>
+    <Container className="py-20 md:py-28">
+      <header className="enter mb-16 max-w-3xl">
+        <h1 className="text-display font-semibold">Resources</h1>
+        <p className="mt-5 text-lead text-fg-muted">Notes on design, code and working with AI.</p>
+      </header>
+      <PostList posts={getPosts()} />
+    </Container>
   );
 }

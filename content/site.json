@@ -1,0 +1,58 @@
+{
+  "name": "A Product Designer",
+  "role": "Product designer & design engineer",
+  "location": "Melbourne \u00b7 Remote",
+  "url": "https://example.com",
+  "description": "Seven fictional design case studies with distinct visual identities and working local prototypes. A portfolio starter for designers.",
+  "headline": "Seven ways to make a difference.",
+  "intro": "A sample portfolio exploring the craft of design: AI systems, everyday products, code, research, language, leadership and independent practice.",
+  "email": "hello@example.com",
+  "availability": "Fictional portfolio collection",
+  "bookingUrl": "",
+  "socials": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/"
+    },
+    {
+      "label": "Read.cv",
+      "url": "https://read.cv/"
+    }
+  ],
+  "nav": [
+    {
+      "label": "Work",
+      "href": "/projects"
+    },
+    {
+      "label": "Resources",
+      "href": "/blog"
+    },
+    {
+      "label": "Resume",
+      "href": "/resume"
+    },
+    {
+      "label": "Design system",
+      "href": "/design-system"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "workedWith": [
+    "Relay",
+    "Tandem",
+    "Formwork",
+    "Common Ground",
+    "Plainly",
+    "Waypoint",
+    "Afterhours"
+  ],
+  "credit": true
+}
