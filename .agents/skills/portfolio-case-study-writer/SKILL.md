@@ -1,55 +1,104 @@
 ---
 name: portfolio-case-study-writer
-description: Write compelling portfolio case studies from rough bullet points or drafts for designer portfolios. Use when the user wants to create or refine a case study, convert bullet points into a case study, add a new project to their portfolio, showcase design work for consulting clients or hiring managers, or apply industry best practice to portfolio case studies. Case studies should demonstrate AI-ready, outcome-based skills (save money, drive revenue, increase efficiency) through ingenuity and technology understanding. Use for any portfolio using the standard case study format (Problem, Solution, Results, Lessons). Output is Markdown for content/case-studies/ and content/projects.json.
+description: Write compelling portfolio case studies from rough notes, bullet points or old drafts, using the story order What → Problem → How I solved it → Impact (→ How I used AI → Lessons). Use when the user wants to add a project, write or improve a case study, turn notes into a case study, or make their work appeal to hiring managers, clients and AI screening tools. Outputs a Markdown file in content/case-studies/.
 ---
 
-# Portfolio Case Study Writer
+# Portfolio case study writer
 
-Turn rough bullet points or drafts into compelling case studies for **designer portfolios** that resonate with **potential consulting or coaching clients** and **hiring managers at top companies**. Case studies should showcase skills and capabilities that are **AI ready** and **outcome-based**: they demonstrate how your work saves money, drives revenue, or increases efficiency through ingenuity and a real understanding of the technology. Works for any design discipline: product design, UX, design engineering, visual design, research, and mixed roles.
+Turn rough notes into a case study that a hiring manager can skim in 60 seconds and an AI screening tool can summarise accurately. Show **outcome-based, AI-ready** work: how the designer's judgment and understanding of the technology **saved money, drove revenue or increased efficiency**.
 
-## Output format
+## Before you write
 
-This skill targets the standard portfolio template structure (e.g. 15-Minute Portfolio Sprint, or any clone using the same content shape):
+1. Read `content/voice.md`. Match its traits, tone sliders and word lists. If it's still the sample, write in a clear, confident, plain-English voice.
+2. Look at one existing file in `content/case-studies/` to match the format.
 
-- **File**: `content/case-studies/[slug].md` (relative to the project root)
-- **Frontmatter**: `slug`, `heroImage`, `projectName`, `catchphrase`, optional `gallery` (array of image URLs)
-- **Sections** (exact `##` headings): `## Problem`, `## Solution`, `## Results`, `## Lessons`. Within each section: a **### compelling TL;DR one-liner** that sums up the section and value prop, then the detailed body—so the audience can scan first and read in detail as needed.
-- **Optional**: `gallery` in frontmatter for visuals. Body is Markdown; typically rendered with react-markdown + remark-gfm + prose styling.
+## Interview (ask only what's missing, a few questions at a time)
 
-Add or update the project in `content/projects.json` (slug, image, title, subheading, tags) so the case study appears in the project grid.
+- **What:** project name, company or client (or "a fintech startup" if under NDA), your role, timeline, team, tools.
+- **Problem:** who was stuck? What did it cost the business (money, time, risk, churn)? What were the constraints?
+- **How you solved it:** 2–4 key decisions and *why*. What did you try that didn't work? What did you say no to?
+- **Impact:** numbers. If they don't have exact numbers, ask for ranges, proxies (tickets, time saved, adoption) or qualitative proof (quotes, awards, launches). Never invent metrics. Mark any estimate as an estimate.
+- **AI (optional but encouraged):** did AI tools, agents or models play a part in the process or the product? What changed because of them (speed, scope, quality)? What did they keep doing themselves?
+- **Lessons:** what would they do again, or differently?
+- **Images:** what visuals exist (screens, photos, diagrams)? Remind them to remove anything confidential.
 
-## Workflow
+## Output
 
-1. **Gather input**: User provides rough bullet points, notes, or an existing draft. If unclear, ask for: project name, your role, problem/context, what you did, outcomes (metrics or qualitative), and one or two lessons.
-2. **Map to structure**: Distil into Problem (clear stakes, user/business pain), Solution (your approach, key decisions, and why—not a step-by-step recipe), Results (impact with numbers or evidence), Lessons (reflective takeaways that show judgment).
-3. **Draft**: Write in first person or “we” as appropriate. Lead with story and insights, not process jargon. Make your role and thinking visible.
-4. **Align with project positioning** (optional): If the project has an AGENTS.md, README, or similar with positioning or brand (e.g. “design + engineering”, “AI/ML design”), reflect that when relevant. Don’t force it into every case study.
-5. **Surface AI-ready, outcome-based value**: When drafting, make it clear how the work ties to business outcomes—saving money, driving revenue, or increasing efficiency—and how your ingenuity and understanding of the technology made that possible. This is what makes the portfolio compelling to both clients and AI-augmented hiring workflows.
-6. **Output**: Valid frontmatter + the four sections. Suggest a short, punchy `catchphrase` for the hero.
+Create `content/case-studies/<slug>.md`. The file name becomes the URL (`/projects/<slug>`), so use short kebab-case.
 
-## Quality principles (industry best practice)
+```markdown
+---
+title: Short, specific title (≤ 6 words)
+catchphrase: One sentence on the outcome and how. Shown under the title.
+summary: Card line, about 12 words, ending in the headline number.
+role: Lead product designer
+timeline: 2025 · 10 weeks
+team: 1 PM, 3 engineers
+tools: [Figma, Claude Code]
+tags: [Product design, Growth]
+year: 2025
+featured: true        # show on the home page
+order: 1              # 1 = first
+coverPrompt: "Image-generation prompt for the hero image (describe subject, setting, light)"
+# cover: /images/my-project.jpg   ← use instead of coverPrompt once there's a real image
+gallery:
+  - prompt: "Prompt for a supporting image"
+    caption: What this image shows
+  # - src: /images/my-project-2.jpg
+  #   alt: Describe the image for screen readers
+  #   caption: …
+---
 
-- **Story over process**: Narrative and decisions drive the case study. Avoid generic methodology (e.g. “we did double diamond”) unless it’s essential to the story.
-- **Insights over steps**: Emphasize what you learned, what changed, and why—including pivots or failed ideas—not a linear list of activities.
-- **Outcome-focused**: Tie decisions to results. Prefer concrete impact (metrics, adoption, risk reduced) over vague “improved UX.”
-- **You in the frame**: Hiring managers and clients need to see *your* contribution: strategy, trade-offs, collaboration under constraints, ownership.
-- **Concise and scannable**: Short paragraphs, clear subheads if a section is long, bullet lists for results. Respect reader time. Each section leads with a compelling TL;DR one-liner so readers can grasp the value prop at a glance, then dive into detail if they want.
+## Problem
 
-For more patterns and examples, see [references/best-practices.md](references/best-practices.md).
+### One-line TL;DR: the stakes, in plain words.
 
-## AI-ready, outcome-based framing
+Body…
 
-Case studies should read as evidence of **AI-ready** skills: the kind of work that clearly maps to business outcomes and can be understood and valued by both humans and AI-assisted evaluation (e.g. recruiting tools, RFP scoring). When writing or refining a case study:
+## Solution
 
-- **Outcome categories**: Explicitly tie results to at least one of: **saving money** (e.g. reduced support load, fewer one-off integrations, lower operational cost), **driving revenue** (e.g. conversion lift, new revenue streams, partner launches), or **increasing efficiency** (e.g. time-to-value, throughput, scalability).
-- **Ingenuity and technology**: Show how your judgment and understanding of the technology (APIs, platform models, tools, constraints) led to the outcome—not just "we shipped a feature" but "we designed the right contract so the platform could scale without rework."
-- **Demonstrable**: Use concrete proof (metrics, named partners, before/after, handover or deprecation) so the outcome is credible and scannable.
+### One-line TL;DR: the key move you made.
 
-This framing makes the portfolio stronger for consulting pitches, hiring managers, and any process that uses AI to shortlist or summarize candidates.
+Body, with the key decisions as a short list…
 
-## Tone and audience
+## Impact
 
-- **Consulting/coaching clients**: Show you can own ambiguity, validate quickly, and deliver impact with limited resources. They’re asking “Can you do this for us?”
-- **Hiring managers**: Show scope (strategy, research, execution, collaboration), bar for quality, and ability to operate at their level. They’re asking “Can you do this role here?”
+### One-line TL;DR with the headline number.
 
-Keep tone professional, confident, and specific—no hype or filler.
+- **Drove revenue:** …
+- **Saved money:** …
+- **Increased efficiency:** …
+
+## How I used AI
+
+### One-line TL;DR: what AI made possible.
+
+Body (optional section; delete if not relevant)…
+
+## Lessons
+
+### One-line TL;DR: the takeaway.
+
+Body…
+```
+
+Rules the site depends on:
+- `##` headings become sections, in order. `Problem`, `Solution`, `Impact`, `How I used AI` and `Lessons` are the standard set (`Results` still works as an older name for `Impact`). `How I used AI` gets a special highlighted card.
+- The first `### line` in each section is shown as its large TL;DR. Keep it under about 20 words.
+- No `projects.json` to update. The project appears in the grid automatically.
+
+## Quality bar
+
+- **Story over process.** Decisions and trade-offs, not "we did a double diamond".
+- **You in the frame.** "I" for your work, "we" for the team's. Be honest about which is which.
+- **Outcomes up front.** Each TL;DR should make sense on its own. AI tools often quote only these lines.
+- **Scannable.** Short paragraphs, lists for impact, about 600–900 words in total.
+- **Machine-readable facts.** State role, scope and metrics explicitly, not just by implication, so `/llms.txt` and AI summaries get them right.
+
+See [references/best-practices.md](references/best-practices.md) for patterns and anti-patterns.
+
+## After writing
+
+- Run `npm run build` to check the file parses.
+- Suggest 1–3 image prompts that match `imageStyle` in `content/voice.md`.
+- Offer a tighter version of the catchphrase if the first one runs over one line.

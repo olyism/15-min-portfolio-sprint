@@ -1,74 +1,162 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCaseStudyBySlug, getCaseStudySlugs } from "@/lib/markdown";
-import CaseStudySections from "@/components/CaseStudySections";
+import { Container } from "@/components/Container";
+import { ArrowLeft, ArrowRight, Sparkle } from "@/components/icons";
+import { JsonLd } from "@/components/JsonLd";
+import { Markdown } from "@/components/Markdown";
+import { Media } from "@/components/Media";
+import { TagList } from "@/components/Tag";
+import { cn } from "@/lib/cn";
+import { getCaseStudies, getCaseStudy, getSite, type CaseStudySection } from "@/lib/content";
+import { absoluteUrl } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  const slugs = getCaseStudySlugs();
-  return slugs.map((slug) => ({ slug }));
+export function generateStaticParams() {
+  return getCaseStudies().map((c) => ({ slug: c.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const c = getCaseStudy((await params).slug);
+  if (!c) return {};
+  return {
+    title: c.title,
+    description: c.summary,
+    alternates: { types: { "text/markdown": `/projects/${c.slug}.md` } },
+  };
 }
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const caseStudy = getCaseStudyBySlug(slug);
-  if (!caseStudy) notFound();
+  const study = getCaseStudy(slug);
+  if (!study) notFound();
 
-  const { frontmatter, sections } = caseStudy;
+  const all = getCaseStudies();
+  const next = all[(all.findIndex((c) => c.slug === slug) + 1) % all.length];
+  const site = getSite();
+  const meta = [
+    ["Role", study.role],
+    ["Timeline", study.timeline],
+    ["Team", study.team],
+    ["Tools", study.tools.join(", ")],
+  ].filter(([, v]) => v) as [string, string][];
 
   return (
-    <article className="pb-16">
-      <div className="relative aspect-[21/9] w-full bg-neutral-100 dark:bg-neutral-800">
-        <Image
-          src={frontmatter.heroImage}
-          alt=""
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-      </div>
-      <div className="mx-auto max-w-3xl px-4 pt-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100">
-          {frontmatter.projectName}
-        </h1>
-        <p className="mt-2 text-xl text-neutral-600 dark:text-neutral-400">
-          {frontmatter.catchphrase}
-        </p>
-        <div className="mt-12">
-          <CaseStudySections sections={sections} />
-        </div>
-        {frontmatter.gallery && frontmatter.gallery.length > 0 && (
-          <section className="mt-12">
-            <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">
-              Gallery
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {frontmatter.gallery.map((src, i) => (
-                <div key={i} className="relative aspect-video rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-                  <Image
-                    src={src}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-        <p className="mt-12">
-          <Link
-            href="/projects"
-            className="text-neutral-600 dark:text-neutral-400 hover:underline"
-          >
-            ← Back to projects
+    <article>
+      <Container className="pt-16 md:pt-24">
+        <div className="enter flex items-center justify-between gap-4 text-small">
+          <Link href="/projects" className="inline-flex items-center gap-1.5 text-fg-muted hover:text-fg">
+            <ArrowLeft width={16} height={16} /> Work
           </Link>
-        </p>
-      </div>
+          <a href={`/projects/${study.slug}.md`} className="no-print text-fg-subtle hover:text-fg" title="A plain-text copy for AI tools">
+            View as Markdown
+          </a>
+        </div>
+        <header className="mt-10 max-w-4xl">
+          <TagList tags={study.tags} className="enter" />
+          <h1 className="enter mt-6 text-display font-semibold text-balance" style={{ "--i": 1 } as React.CSSProperties}>
+            {study.title}
+          </h1>
+          <p className="enter mt-6 text-lead text-fg-muted text-pretty" style={{ "--i": 2 } as React.CSSProperties}>
+            {study.catchphrase}
+          </p>
+        </header>
+        {meta.length > 0 && (
+          <dl
+            className="enter mt-12 grid grid-cols-2 gap-6 border-t border-border-subtle pt-8 md:grid-cols-4"
+            style={{ "--i": 3 } as React.CSSProperties}
+          >
+            {meta.map(([k, v]) => (
+              <div key={k}>
+                <dt className="text-caption font-medium tracking-wide text-fg-subtle uppercase">{k}</dt>
+                <dd className="mt-1.5 text-small">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        <div className="enter mt-14" style={{ "--i": 4 } as React.CSSProperties}>
+          <Media img={study.cover} ratio="16/9" sizes="100vw" priority />
+        </div>
+      </Container>
+
+      <Container className="py-section">
+        <div className="grid gap-12 lg:grid-cols-[12rem_1fr] lg:gap-20">
+          <nav aria-label="Sections" className="hidden lg:block">
+            <ul className="sticky top-28 space-y-1 border-l border-border-subtle text-small">
+              {study.sections.map((s) => (
+                <li key={s.id}>
+                  <a href={`#${s.id}`} className="-ml-px block border-l border-transparent py-1 pl-4 text-fg-muted hover:border-fg hover:text-fg">
+                    {s.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="max-w-reading space-y-24">
+            {study.sections.map((s) => (
+              <CaseSection key={s.id} section={s} />
+            ))}
+          </div>
+        </div>
+      </Container>
+
+      {study.gallery.length > 0 && (
+        <Container className="pb-section">
+          <div className="grid gap-8 md:grid-cols-2">
+            {study.gallery.map((img, i) => (
+              <figure key={i} className={cn("reveal", study.gallery.length % 2 === 1 && i === 0 && "md:col-span-2")}>
+                <Media img={img} ratio={study.gallery.length % 2 === 1 && i === 0 ? "16/9" : "4/3"} />
+                {img.caption && <figcaption className="mt-3 text-small text-fg-subtle">{img.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        </Container>
+      )}
+
+      {next && next.slug !== slug && (
+        <Container className="pb-section">
+          <Link href={`/projects/${next.slug}`} className="group reveal block border-t border-border-subtle pt-10">
+            <p className="text-caption font-medium tracking-wide text-fg-subtle uppercase">Next project</p>
+            <p className="mt-3 flex items-center gap-3 text-display font-semibold">
+              {next.title}
+              <ArrowRight width={36} height={36} className="transition-transform duration-(--duration-base) group-hover:translate-x-2" />
+            </p>
+            <p className="mt-3 max-w-2xl text-fg-muted">{next.summary}</p>
+          </Link>
+        </Container>
+      )}
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          name: study.title,
+          headline: study.catchphrase,
+          abstract: study.summary,
+          url: absoluteUrl(`/projects/${study.slug}`),
+          creator: { "@type": "Person", name: site.name, jobTitle: study.role ?? site.role },
+          keywords: [...study.tags, ...study.tools].join(", "),
+          ...(study.year ? { dateCreated: String(study.year) } : {}),
+        }}
+      />
     </article>
+  );
+}
+
+function CaseSection({ section }: { section: CaseStudySection }) {
+  const ai = section.id === "how-i-used-ai";
+  return (
+    <section
+      id={section.id}
+      className={cn("reveal scroll-mt-28", ai && "rounded-card bg-bg-subtle p-8 ring-1 ring-border-subtle md:p-10")}
+    >
+      <h2 className="flex items-center gap-2 text-caption font-semibold tracking-wide text-accent uppercase">
+        {ai && <Sparkle width={16} height={16} />}
+        {section.title}
+      </h2>
+      {section.tldr && <p className="mt-4 text-title font-semibold text-balance">{section.tldr}</p>}
+      {section.body && <Markdown className="mt-8">{section.body}</Markdown>}
+    </section>
   );
 }

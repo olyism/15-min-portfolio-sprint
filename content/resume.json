@@ -1,0 +1,51 @@
+{
+  "summary": "Product designer and design engineer with 9 years' experience across fintech, health and B2B SaaS. I lead work from discovery to production code, prototype with AI agents to cut validation time, and build design systems that teams actually adopt. Best known for turning fuzzy, high-stakes problems into shipped products with measurable impact.",
+  "experience": [
+    {
+      "company": "Northwind",
+      "role": "Lead Product Designer, Platform",
+      "start": "2023",
+      "end": "Present",
+      "location": "Melbourne",
+      "highlights": [
+        "Redesigned self-serve onboarding with agent-built prototypes; time-to-value fell from 4 days to 40 minutes and trial-to-paid rose 18%.",
+        "Founded the Lattice design system (tokens to React); 6 product teams adopted it within two quarters, UI build time down 35%.",
+        "Introduced an AI-assisted research loop that cut synthesis from 2 weeks to 3 days."
+      ]
+    },
+    {
+      "company": "Kitebank",
+      "role": "Senior Product Designer, Payments",
+      "start": "2020",
+      "end": "2023",
+      "location": "Sydney",
+      "highlights": [
+        "Led the mobile checkout rebuild; conversion up 11% and payment-related support tickets down 27%.",
+        "Partnered with engineering on a component library shared by web and iOS.",
+        "Mentored 4 designers, 2 promoted to senior."
+      ]
+    },
+    {
+      "company": "Fieldwork Studio",
+      "role": "Product Designer",
+      "start": "2017",
+      "end": "2020",
+      "location": "Melbourne",
+      "highlights": [
+        "Designed and shipped 12 client products across health, retail and government.",
+        "Ran discovery sprints that won 3 follow-on engagements worth $1.2M."
+      ]
+    }
+  ],
+  "skills": [
+    { "group": "Design", "items": ["Product strategy", "Interaction design", "Design systems", "Prototyping", "Research"] },
+    { "group": "Engineering", "items": ["React", "Next.js", "TypeScript", "Tailwind", "Design tokens"] },
+    { "group": "AI", "items": ["Claude Code", "Cursor", "Prompt & eval design", "Agent workflows", "Image generation"] }
+  ],
+  "education": [
+    { "school": "RMIT University", "qualification": "Bachelor of Design (Communication)", "year": "2016" }
+  ],
+  "awards": [
+    { "title": "Good Design Award", "detail": "Digital, for Kitebank checkout", "year": "2022" }
+  ]
+}

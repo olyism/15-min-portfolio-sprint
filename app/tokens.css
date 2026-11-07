@@ -1,0 +1,81 @@
+/*
+ * DESIGN TOKENS: the one file you edit to restyle the whole site.
+ *
+ * - Colours use light-dark(LIGHT, DARK). The site follows the visitor's system
+ *   setting, and the theme toggle can override it.
+ * - Every token here becomes a Tailwind class: --color-fg-muted → text-fg-muted,
+ *   --radius-card → rounded-card, --text-display → text-display, and so on.
+ * - The /design-system page reads this file, so changes show up there.
+ * - The text after each token (in comments) is shown on /design-system. Keep it short.
+ * - Lines like "@group Colour" set the section headings on /design-system.
+ */
+
+@theme static {
+  /* @group Colour */
+  --color-*: initial;
+  --color-bg: light-dark(#fbfbfd, #000000); /* Page background */
+  --color-bg-subtle: light-dark(#f2f2f5, #101012); /* Alternate sections, placeholders */
+  --color-bg-elevated: light-dark(#ffffff, #1b1b1f); /* Cards, menus */
+  --color-fg: light-dark(#111114, #f5f5f7); /* Headings and primary text */
+  --color-fg-muted: light-dark(#5f5f66, #a8a8b0); /* Body copy, descriptions */
+  --color-fg-subtle: light-dark(#6e6e76, #8a8a93); /* Captions, meta */
+  --color-border: light-dark(#d9d9de, #2e2e33); /* Dividers, outlines */
+  --color-border-subtle: light-dark(#e9e9ed, #1f1f23); /* Hairlines */
+  --color-accent: light-dark(#0a66d8, #4c9aff); /* Links, focus, highlights */
+  --color-accent-subtle: light-dark(#e8f1fd, #0d2140); /* Accent backgrounds */
+  --color-positive: light-dark(#1d7f3c, #3ccf6e); /* Availability, success */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* @group Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter",
+    "Segoe UI", system-ui, sans-serif; /* Body and display */
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace; /* Code, tokens */
+
+  --text-hero: clamp(3rem, 6.5vw + 1rem, 6.5rem); /* Home headline */
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.035em;
+  --text-display: clamp(2.5rem, 4vw + 1rem, 4.5rem); /* Page titles */
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --text-title: clamp(1.75rem, 1.5vw + 1.1rem, 2.5rem); /* Section titles */
+  --text-title--line-height: 1.12;
+  --text-title--letter-spacing: -0.022em;
+  --text-heading: 1.375rem; /* Card titles */
+  --text-heading--line-height: 1.25;
+  --text-heading--letter-spacing: -0.015em;
+  --text-lead: clamp(1.1875rem, 0.6vw + 1rem, 1.5rem); /* Intros, TL;DRs */
+  --text-lead--line-height: 1.45;
+  --text-lead--letter-spacing: -0.012em;
+  --text-body: 1.0625rem; /* Paragraphs */
+  --text-body--line-height: 1.6;
+  --text-small: 0.9375rem; /* UI text */
+  --text-small--line-height: 1.45;
+  --text-caption: 0.8125rem; /* Meta, labels */
+  --text-caption--line-height: 1.4;
+
+  /* @group Spacing */
+  --spacing: 0.25rem; /* Base unit: p-4 = 1rem */
+  --spacing-gutter: clamp(1.25rem, 4vw, 2.5rem); /* Page side padding */
+  --spacing-section: clamp(5rem, 10vw, 9rem); /* Space between big sections */
+  --container-content: 76rem; /* Main column width */
+  --container-reading: 42rem; /* Reading width */
+
+  /* @group Radius */
+  --radius-sm: 0.5rem; /* Inputs, small chips */
+  --radius-md: 0.875rem; /* Buttons */
+  --radius-lg: 1.25rem; /* Panels */
+  --radius-card: 1.75rem; /* Project tiles, images */
+  --radius-pill: 999px; /* Tags, toggles */
+
+  /* @group Elevation */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.12); /* Resting card */
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.06), 0 24px 48px -20px rgb(0 0 0 / 0.25); /* Hovered card */
+
+  /* @group Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* Default easing */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* Playful overshoot */
+  --duration-fast: 160ms; /* Hover, press */
+  --duration-base: 320ms; /* Most transitions */
+  --duration-slow: 700ms; /* Reveals */
+}

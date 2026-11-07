@@ -1,0 +1,26 @@
+{
+  "name": "Sam Rivera",
+  "role": "Product designer & design engineer",
+  "location": "Melbourne · Remote",
+  "url": "https://example.com",
+  "description": "Sam Rivera is an AI-first product designer and design engineer who turns fuzzy problems into shipped products that move revenue, cost and speed.",
+  "headline": "I design products and build them, with AI in the loop.",
+  "intro": "Product designer and design engineer. I take teams from a fuzzy problem to a shipped product, prototyping in code and using AI to test more ideas in less time.",
+  "email": "hello@example.com",
+  "availability": "Open to new projects from March",
+  "bookingUrl": "",
+  "socials": [
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/" },
+    { "label": "GitHub", "url": "https://github.com/" },
+    { "label": "Read.cv", "url": "https://read.cv/" }
+  ],
+  "nav": [
+    { "label": "Work", "href": "/projects" },
+    { "label": "Writing", "href": "/blog" },
+    { "label": "Resume", "href": "/resume" },
+    { "label": "Design system", "href": "/design-system" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "workedWith": ["Northwind", "Lumen Health", "Fieldwork", "Parallel", "Kitebank", "Orbit Labs"],
+  "credit": true
+}

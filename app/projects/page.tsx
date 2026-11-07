@@ -1,19 +1,21 @@
-import { getProjects } from "@/lib/content";
-import ProjectGrid from "@/components/ProjectGrid";
+import type { Metadata } from "next";
+import { Container } from "@/components/Container";
+import { ProjectGrid } from "@/components/ProjectCard";
+import { getCaseStudies } from "@/lib/content";
+
+export const metadata: Metadata = { title: "Work", description: "Selected case studies." };
 
 export default function ProjectsPage() {
-  const projects = getProjects();
+  const projects = getCaseStudies();
   return (
-    <div className="py-12 px-4">
-      <div className="mx-auto max-w-6xl">
-        <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
-          Projects
-        </h1>
-        <p className="text-neutral-600 dark:text-neutral-400 mb-10">
-          Case studies and selected work.
+    <Container className="py-20 md:py-28">
+      <header className="enter mb-16 max-w-3xl md:mb-24">
+        <h1 className="text-display font-semibold">Work</h1>
+        <p className="mt-5 text-lead text-fg-muted">
+          Selected projects: the problem, what I did and what changed.
         </p>
-        <ProjectGrid projects={projects} />
-      </div>
-    </div>
+      </header>
+      <ProjectGrid projects={projects} />
+    </Container>
   );
 }

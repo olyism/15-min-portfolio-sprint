@@ -1,24 +1,48 @@
 import Link from "next/link";
+import type { Site } from "@/lib/content";
 
-export default function Footer() {
+export function Footer({ site }: { site: Site }) {
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-800 mt-auto">
-      <div className="mx-auto max-w-6xl px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-500 dark:text-neutral-400">
-        <p>© {new Date().getFullYear()} Your Name. Built with the 15-Minute Portfolio Sprint template.</p>
-        <div className="flex gap-6">
-          <Link href="/projects" className="hover:text-neutral-700 dark:hover:text-neutral-300">
-            Projects
-          </Link>
-          <Link href="/blog" className="hover:text-neutral-700 dark:hover:text-neutral-300">
-            Blog
-          </Link>
-          <Link href="/resume" className="hover:text-neutral-700 dark:hover:text-neutral-300">
-            Resume
-          </Link>
-          <Link href="/contact" className="hover:text-neutral-700 dark:hover:text-neutral-300">
-            Contact
-          </Link>
+    <footer className="no-print border-t border-border-subtle">
+      <div className="mx-auto box-content grid max-w-content gap-10 px-gutter py-14 text-small md:grid-cols-[1fr_auto_auto] md:gap-16">
+        <div>
+          <p className="font-semibold">{site.name}</p>
+          <p className="mt-1 text-fg-muted">{site.role}</p>
+          <a href={`mailto:${site.email}`} className="mt-4 inline-block text-accent hover:underline">
+            {site.email}
+          </a>
         </div>
+        <ul className="space-y-2">
+          {site.nav.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className="text-fg-muted hover:text-fg">
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <ul className="space-y-2">
+          {site.socials.map((s) => (
+            <li key={s.url}>
+              <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-fg-muted hover:text-fg">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="mx-auto box-content flex max-w-content flex-wrap justify-between gap-2 px-gutter pb-10 text-caption text-fg-subtle">
+        <p>
+          © {new Date().getFullYear()} {site.name}
+        </p>
+        {site.credit && (
+          <p>
+            Template by{" "}
+            <a href="https://olysu.com" target="_blank" rel="noopener" className="hover:text-fg">
+              Oly Su
+            </a>
+          </p>
+        )}
       </div>
     </footer>
   );
