@@ -5,6 +5,9 @@ import { absoluteUrl } from "./seo";
 export function caseStudyMarkdown(c: CaseStudy) {
   const site = getSite();
   const meta = [
+    c.fictional && "- **Status:** Fictional teaching example. Companies, scenarios and evidence are illustrative; outcomes are proposed, not measured.",
+    c.specialty && `- **Specialty:** ${c.specialty}`,
+    c.theme && `- **Design system:** ${absoluteUrl(`/projects/${c.slug}/design-system`)}`,
     c.role && `- **Role:** ${c.role}`,
     c.timeline && `- **Timeline:** ${c.timeline}`,
     c.team && `- **Team:** ${c.team}`,
@@ -48,6 +51,10 @@ export function llmsTxt() {
 ## Case studies
 
 ${studies.map((c) => `- [${c.title}](${absoluteUrl(`/projects/${c.slug}.md`)}): ${c.summary}`).join("\n")}
+
+## Project design systems
+
+${studies.filter(c => c.theme).map(c => `- [${c.company ?? c.title}](${absoluteUrl(`/projects/${c.slug}/design-system`)}): independent typography, palette, interface imagery and product references`).join("\n")}
 
 ## Writing
 

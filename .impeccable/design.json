@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T02:44:27.759Z",
+  "title": "Portfolio Sprint — independent project worlds",
+  "extensions": {
+    "colorMeta": {
+      "relay-bg": {
+        "displayName": "Relay / bg",
+        "role": "neutral"
+      },
+      "relay-panel": {
+        "displayName": "Relay / panel",
+        "role": "neutral"
+      },
+      "relay-fg": {
+        "displayName": "Relay / fg",
+        "role": "neutral"
+      },
+      "relay-muted": {
+        "displayName": "Relay / muted",
+        "role": "neutral"
+      },
+      "relay-accent": {
+        "displayName": "Relay / accent",
+        "role": "primary"
+      },
+      "relay-mark": {
+        "displayName": "Relay / mark",
+        "role": "neutral"
+      },
+      "tandem-bg": {
+        "displayName": "Tandem / bg",
+        "role": "neutral"
+      },
+      "tandem-panel": {
+        "displayName": "Tandem / panel",
+        "role": "neutral"
+      },
+      "tandem-fg": {
+        "displayName": "Tandem / fg",
+        "role": "neutral"
+      },
+      "tandem-muted": {
+        "displayName": "Tandem / muted",
+        "role": "neutral"
+      },
+      "tandem-accent": {
+        "displayName": "Tandem / accent",
+        "role": "primary"
+      },
+      "tandem-mark": {
+        "displayName": "Tandem / mark",
+        "role": "neutral"
+      },
+      "formwork-bg": {
+        "displayName": "Formwork / bg",
+        "role": "neutral"
+      },
+      "formwork-panel": {
+        "displayName": "Formwork / panel",
+        "role": "neutral"
+      },
+      "formwork-fg": {
+        "displayName": "Formwork / fg",
+        "role": "neutral"
+      },
+      "formwork-muted": {
+        "displayName": "Formwork / muted",
+        "role": "neutral"
+      },
+      "formwork-accent": {
+        "displayName": "Formwork / accent",
+        "role": "primary"
+      },
+      "formwork-mark": {
+        "displayName": "Formwork / mark",
+        "role": "neutral"
+      },
+      "research-bg": {
+        "displayName": "Common Ground / bg",
+        "role": "neutral"
+      },
+      "research-panel": {
+        "displayName": "Common Ground / panel",
+        "role": "neutral"
+      },
+      "research-fg": {
+        "displayName": "Common Ground / fg",
+        "role": "neutral"
+      },
+      "research-muted": {
+        "displayName": "Common Ground / muted",
+        "role": "neutral"
+      },
+      "research-accent": {
+        "displayName": "Common Ground / accent",
+        "role": "primary"
+      },
+      "research-mark": {
+        "displayName": "Common Ground / mark",
+        "role": "neutral"
+      },
+      "plainly-bg": {
+        "displayName": "Plainly / bg",
+        "role": "neutral"
+      },
+      "plainly-panel": {
+        "displayName": "Plainly / panel",
+        "role": "neutral"
+      },
+      "plainly-fg": {
+        "displayName": "Plainly / fg",
+        "role": "neutral"
+      },
+      "plainly-muted": {
+        "displayName": "Plainly / muted",
+        "role": "neutral"
+      },
+      "plainly-accent": {
+        "displayName": "Plainly / accent",
+        "role": "primary"
+      },
+      "plainly-mark": {
+        "displayName": "Plainly / mark",
+        "role": "neutral"
+      },
+      "waypoint-bg": {
+        "displayName": "Waypoint / bg",
+        "role": "neutral"
+      },
+      "waypoint-panel": {
+        "displayName": "Waypoint / panel",
+        "role": "neutral"
+      },
+      "waypoint-fg": {
+        "displayName": "Waypoint / fg",
+        "role": "neutral"
+      },
+      "waypoint-muted": {
+        "displayName": "Waypoint / muted",
+        "role": "neutral"
+      },
+      "waypoint-accent": {
+        "displayName": "Waypoint / accent",
+        "role": "primary"
+      },
+      "waypoint-mark": {
+        "displayName": "Waypoint / mark",
+        "role": "neutral"
+      },
+      "cinema-bg": {
+        "displayName": "Afterhours / bg",
+        "role": "neutral"
+      },
+      "cinema-panel": {
+        "displayName": "Afterhours / panel",
+        "role": "neutral"
+      },
+      "cinema-fg": {
+        "displayName": "Afterhours / fg",
+        "role": "neutral"
+      },
+      "cinema-muted": {
+        "displayName": "Afterhours / muted",
+        "role": "neutral"
+      },
+      "cinema-accent": {
+        "displayName": "Afterhours / accent",
+        "role": "primary"
+      },
+      "cinema-mark": {
+        "displayName": "Afterhours / mark",
+        "role": "neutral"
+      }
+    },
+    "typographyMeta": {
+      "relay-display": {
+        "displayName": "Relay / Inter",
+        "purpose": "Quiet precision for consequential work."
+      },
+      "tandem-display": {
+        "displayName": "Tandem / Outfit",
+        "purpose": "Warm, practical software for the people doing the shift."
+      },
+      "formwork-display": {
+        "displayName": "Formwork / IBM Plex Mono",
+        "purpose": "An exact, inspectable bridge between a design choice and its implementation."
+      },
+      "common-ground-display": {
+        "displayName": "Common Ground / Newsreader",
+        "purpose": "A patient editorial space that keeps observations close to their sources."
+      },
+      "plainly-display": {
+        "displayName": "Plainly / Manrope",
+        "purpose": "An accessible service voice that gives people a clear next step."
+      },
+      "waypoint-display": {
+        "displayName": "Waypoint / Archivo",
+        "purpose": "A bold, legible strategy that makes ownership and trade-offs tangible."
+      },
+      "afterhours-display": {
+        "displayName": "Afterhours / Bodoni Moda",
+        "purpose": "Cinema photography and editorial type, held together by a practical programme."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card",
+        "value": "0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.12)",
+        "purpose": "Shared project-card resting treatment."
+      },
+      {
+        "name": "lift",
+        "value": "0 2px 4px rgb(0 0 0 / 0.06), 0 24px 48px -20px rgb(0 0 0 / 0.25)",
+        "purpose": "Shared project-card hover treatment."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Central motion vocabulary; reduced motion shortens durations, and case sections remain stationary."
+      },
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Central motion vocabulary; reduced motion shortens durations, and case sections remain stationary."
+      },
+      {
+        "name": "duration-fast",
+        "value": "160ms",
+        "purpose": "Central motion vocabulary; reduced motion shortens durations, and case sections remain stationary."
+      },
+      {
+        "name": "duration-base",
+        "value": "320ms",
+        "purpose": "Central motion vocabulary; reduced motion shortens durations, and case sections remain stationary."
+      },
+      {
+        "name": "duration-slow",
+        "value": "700ms",
+        "purpose": "Central motion vocabulary; reduced motion shortens durations, and case sections remain stationary."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "shared-medium",
+        "value": "48rem"
+      },
+      {
+        "name": "artifact-rearrangement-container",
+        "value": "480px"
+      },
+      {
+        "name": "artifact-narrow-container",
+        "value": "320px"
+      },
+      {
+        "name": "workbench-viewport",
+        "value": "640px"
+      },
+      {
+        "name": "seat-map-viewport",
+        "value": "360px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Relay product imagery",
+      "kind": "custom",
+      "refersTo": "relay-artwork",
+      "description": "A dark desktop incident-response workspace with an investigation timeline, a service dependency graph and a rollback inspector requiring human approval.",
+      "html": "<figure class=\"project-artwork\"><img src=\"/images/projects/relay-ui.webp\" alt=\"A dark desktop incident-response workspace with an investigation timeline, a service dependency graph and a rollback inspector requiring human approval.\" width=\"1487\" height=\"1058\" /></figure>",
+      "css": ".project-artwork { margin: 0; overflow: hidden; background: var(--color-relay-bg); border-radius: var(--radius-world-sharp); } .project-artwork img { display: block; width: 100%; height: auto; }"
+    },
+    {
+      "name": "Tandem product imagery",
+      "kind": "custom",
+      "refersTo": "tandem-artwork",
+      "description": "Two coordinated mobile scheduling screens: a weekly shift view and a colleague-selection flow, with eligibility checks and an explicit pending-approval message.",
+      "html": "<figure class=\"project-artwork\"><img src=\"/images/projects/tandem-ui.webp\" alt=\"Two coordinated mobile scheduling screens: a weekly shift view and a colleague-selection flow, with eligibility checks and an explicit pending-approval message.\" width=\"1487\" height=\"1058\" /></figure>",
+      "css": ".project-artwork { margin: 0; overflow: hidden; background: var(--color-tandem-bg); border-radius: var(--radius-world-soft); } .project-artwork img { display: block; width: 100%; height: auto; }"
+    },
+    {
+      "name": "Formwork product imagery",
+      "kind": "custom",
+      "refersTo": "formwork-artwork",
+      "description": "A blue and white component workbench with a navigation tree, three button states, a properties inspector, React code and an accessibility checklist.",
+      "html": "<figure class=\"project-artwork\"><img src=\"/images/projects/formwork-ui.webp\" alt=\"A blue and white component workbench with a navigation tree, three button states, a properties inspector, React code and an accessibility checklist.\" width=\"1487\" height=\"1058\" /></figure>",
+      "css": ".project-artwork { margin: 0; overflow: hidden; background: var(--color-formwork-bg); border-radius: var(--radius-world-sharp); } .project-artwork img { display: block; width: 100%; height: auto; }"
+    },
+    {
+      "name": "Common Ground product imagery",
+      "kind": "custom",
+      "refersTo": "common-ground-artwork",
+      "description": "A warm paper-toned research notebook showing a home-energy study, source excerpts grouped by trust, permission and timing, and a traceable interpretation panel.",
+      "html": "<figure class=\"project-artwork\"><img src=\"/images/projects/common-ground-ui.webp\" alt=\"A warm paper-toned research notebook showing a home-energy study, source excerpts grouped by trust, permission and timing, and a traceable interpretation panel.\" width=\"1487\" height=\"1058\" /></figure>",
+      "css": ".project-artwork { margin: 0; overflow: hidden; background: var(--color-research-bg); border-radius: var(--radius-world-sharp); } .project-artwork img { display: block; width: 100%; height: auto; }"
+    },
+    {
+      "name": "Plainly product imagery",
+      "kind": "custom",
+      "refersTo": "plainly-artwork",
+      "description": "A calm blue utility support portal with three help routes, a contact-request panel and clear wording that the request does not commit the person to a payment plan.",
+      "html": "<figure class=\"project-artwork\"><img src=\"/images/projects/plainly-ui.webp\" alt=\"A calm blue utility support portal with three help routes, a contact-request panel and clear wording that the request does not commit the person to a payment plan.\" width=\"1487\" height=\"1058\" /></figure>",
+      "css": ".project-artwork { margin: 0; overflow: hidden; background: var(--color-plainly-bg); border-radius: var(--radius-world-soft); } .project-artwork img { display: block; width: 100%; height: auto; }"
+    },
+    {
+      "name": "Waypoint product imagery",
+      "kind": "custom",
+      "refersTo": "waypoint-artwork",
+      "description": "A yellow and ink strategy workspace with Now, Next and Later initiatives, a three-lane 90-day roadmap and a decision record explaining what the team will defer.",
+      "html": "<figure class=\"project-artwork\"><img src=\"/images/projects/waypoint-ui.webp\" alt=\"A yellow and ink strategy workspace with Now, Next and Later initiatives, a three-lane 90-day roadmap and a decision record explaining what the team will defer.\" width=\"1487\" height=\"1058\" /></figure>",
+      "css": ".project-artwork { margin: 0; overflow: hidden; background: var(--color-waypoint-bg); border-radius: var(--radius-world-sharp); } .project-artwork img { display: block; width: 100%; height: auto; }"
+    },
+    {
+      "name": "Afterhours product imagery",
+      "kind": "custom",
+      "refersTo": "afterhours-artwork",
+      "description": "An ink-black and oxblood cinema programme featuring a rain-lit Melbourne tram film still, a large film title and an adjacent screening selector with a clear booking action.",
+      "html": "<figure class=\"project-artwork\"><img src=\"/images/projects/afterhours-ui.webp\" alt=\"An ink-black and oxblood cinema programme featuring a rain-lit Melbourne tram film still, a large film title and an adjacent screening selector with a clear booking action.\" width=\"1487\" height=\"1058\" /></figure>",
+      "css": ".project-artwork { margin: 0; overflow: hidden; background: var(--color-cinema-bg); border-radius: var(--radius-world-sharp); } .project-artwork img { display: block; width: 100%; height: auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Seven independent product worlds",
+    "overview": "Original generated product screenshots replace the coded showcase specimens. Each project has independent typography, scoped colour roles and a nested system page. Shared portfolio wayfinding stays consistent.",
+    "keyCharacteristics": [
+      "Relay: Control room",
+      "Tandem: Neighbourhood shift",
+      "Formwork: Component laboratory",
+      "Common Ground: Evidence notebook",
+      "Plainly: Breathing room",
+      "Waypoint: Decision architecture",
+      "Afterhours: After the lights go down"
+    ],
+    "rules": [
+      {
+        "name": "Scoped identity",
+        "body": "Use each project's own tokens and font family inside its data-world boundary.",
+        "section": "colors"
+      },
+      {
+        "name": "Image-led product artwork",
+        "body": "Render the generated UI image intact; keep working exercises and provenance outside the artwork.",
+        "section": "layout"
+      },
+      {
+        "name": "Explicit source limits",
+        "body": "References are inspiration. Generated screenshots and synthetic evidence are illustrative, not production results.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Preserve natural image aspect ratios.",
+      "Use central tokens.",
+      "Retain accessible real controls in separate exercises."
+    ],
+    "donts": [
+      "Do not reconstruct or overlay the app screenshots in HTML.",
+      "Do not add conceptual stamps to the artwork.",
+      "Do not claim unperformed browser verification."
+    ]
+  }
+}

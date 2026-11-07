@@ -1,0 +1,355 @@
+{
+  "relay": {
+    "name": "Relay",
+    "systemName": "Control room",
+    "thesis": "Quiet precision for consequential work.",
+    "font": "Inter",
+    "displayFamily": "Inter",
+    "utilityFamily": "Inter",
+    "palettePrefix": "relay",
+    "voice": "A trace you can read. An action you can review.",
+    "sample": "Evidence, then action.",
+    "principles": [
+      "Treat evidence as a first-class object.",
+      "Keep agent activity separate from human approval.",
+      "Use colour for state, not atmosphere."
+    ],
+    "references": [
+      {
+        "name": "Linear \u00b7 agents",
+        "url": "https://linear.app/agents",
+        "note": "Visual reference for precise dark surfaces, restrained accents and visible agent activity. Relay\u2019s incident workflow is an original concept."
+      },
+      {
+        "name": "Linear \u00b7 AI",
+        "url": "https://linear.app/ai",
+        "note": "Reference for contextual agent work and reviewable activity."
+      }
+    ],
+    "hero": {
+      "src": "/images/projects/relay-ui-v2.webp",
+      "alt": "A dark desktop incident-response workspace with an investigation timeline, a service dependency graph and a rollback inspector requiring human approval.",
+      "width": 1487,
+      "height": 1058,
+      "caption": "Relay\u2019s incident workspace: an evidence timeline, service map and human-approved rollback. Generated interface exploration."
+    },
+    "description": "A dark desktop incident-response workspace with an investigation timeline, a service dependency graph and a rollback inspector requiring human approval.",
+    "spacing": [
+      "4px base unit",
+      "12px within controls",
+      "24px between related groups",
+      "64px between narrative sections"
+    ],
+    "shape": "Precise, compact corners",
+    "principleDetails": [
+      "A claim should travel with a source identifier, retrieval context and a clear route to inspect it.",
+      "A proposal is not an execution. Review remains visible, and changed arguments invalidate approval.",
+      "Mint marks verified evidence, lavender marks a reviewable action, and the neutral surface carries everything else."
+    ],
+    "logo": {
+      "src": "/images/projects/relay-logo.png",
+      "width": 256,
+      "height": 256
+    },
+    "sectionImages": {
+      "problem": {
+        "src": "/images/projects/relay-problem.webp",
+        "alt": "A Relay incident triage screen with alert feed, deployment history, trace explorer and incident channel.",
+        "width": 1487,
+        "height": 1058,
+        "caption": "The starting point: four sources, conflicting signals, one on-call engineer. Relay is an incident-response tool for engineering teams. Generated interface exploration."
+      },
+      "solution": {
+        "src": "/images/projects/relay-solution.webp",
+        "alt": "Relay rollback review with cited evidence, a review checkpoint and a production permission boundary.",
+        "width": 1568,
+        "height": 1003,
+        "caption": "The proposed interaction: inspect the exact rollback and its sources before granting single-use approval. Generated interface exploration."
+      },
+      "impact": {
+        "src": "/images/projects/relay-impact.webp",
+        "alt": "Relay evaluation lab showing six synthetic fixtures and a stale-runbook recovery trace.",
+        "width": 1487,
+        "height": 1058,
+        "caption": "An evaluation interface for six synthetic policy cases. These are illustrative fixture results, not production performance. Generated interface exploration."
+      },
+      "how-i-used-ai": {
+        "src": "/images/projects/relay-how-i-used-ai.webp",
+        "alt": "Relay agent contract showing prompt rules, a context manifest and permission-scoped MCP tools.",
+        "width": 1487,
+        "height": 1058,
+        "caption": "AI design made inspectable: prompt rules, source freshness, tool permissions and a bounded execution budget. Generated interface exploration."
+      },
+      "lessons": {
+        "src": "/images/projects/relay-lessons.webp",
+        "alt": "Relay safe-stop screen withholding a proposal because the runbook is expired and offering context refresh or human handoff.",
+        "width": 1487,
+        "height": 1058,
+        "caption": "A recovery exploration: make the missing evidence and next safe action explicit. The working demo uses freshness checks rather than confidence scores. Generated interface exploration."
+      }
+    }
+  },
+  "tandem": {
+    "name": "Tandem",
+    "systemName": "Neighbourhood shift",
+    "thesis": "Warm, practical software for the people doing the shift.",
+    "font": "Outfit",
+    "displayFamily": "Outfit",
+    "utilityFamily": "Outfit",
+    "palettePrefix": "tandem",
+    "voice": "Life happens. Your schedule can keep up.",
+    "sample": "Make room for real life.",
+    "principles": [
+      "Show the shift before asking for a decision.",
+      "Explain eligibility without exposing private availability.",
+      "Keep a pending request visibly different from a confirmed swap."
+    ],
+    "references": [
+      {
+        "name": "Deputy",
+        "url": "https://www.deputy.com/features/shift-swapping",
+        "note": "Qualified cover, colleague consent and manager approval in a mobile scheduling flow."
+      }
+    ],
+    "hero": {
+      "src": "/images/projects/tandem-ui.webp",
+      "alt": "Two coordinated mobile scheduling screens: a weekly shift view and a colleague-selection flow, with eligibility checks and an explicit pending-approval message.",
+      "width": 1487,
+      "height": 1058,
+      "caption": "Generated product interface \u00b7 Tandem"
+    },
+    "description": "Two coordinated mobile scheduling screens: a weekly shift view and a colleague-selection flow, with eligibility checks and an explicit pending-approval message.",
+    "spacing": [
+      "4px base unit",
+      "12px within controls",
+      "24px between related groups",
+      "64px between narrative sections"
+    ],
+    "shape": "Soft service surfaces",
+    "principleDetails": [
+      "Date, hours and role travel with the request so both people know what they are agreeing to.",
+      "Show whether a colleague can cover the shift without exposing private roster details.",
+      "The original assignment stays in force until consent and review are complete."
+    ]
+  },
+  "formwork": {
+    "name": "Formwork",
+    "systemName": "Component laboratory",
+    "thesis": "An exact, inspectable bridge between a design choice and its implementation.",
+    "font": "IBM Plex Mono",
+    "displayFamily": "IBM Plex Mono",
+    "utilityFamily": "DM Sans",
+    "palettePrefix": "formwork",
+    "voice": "Build the thing you mean.",
+    "sample": "The specimen is the specification.",
+    "principles": [
+      "Expose the component contract beside the specimen.",
+      "Name supported variations instead of offering arbitrary values.",
+      "Make accessibility and loading states part of the default view."
+    ],
+    "references": [
+      {
+        "name": "Storybook",
+        "url": "https://storybook.js.org/docs/8/essentials/controls",
+        "note": "A component canvas, argument controls and inspectable implementation documentation."
+      }
+    ],
+    "hero": {
+      "src": "/images/projects/formwork-ui.webp",
+      "alt": "A blue and white component workbench with a navigation tree, three button states, a properties inspector, React code and an accessibility checklist.",
+      "width": 1487,
+      "height": 1058,
+      "caption": "Generated product interface \u00b7 Formwork"
+    },
+    "description": "A blue and white component workbench with a navigation tree, three button states, a properties inspector, React code and an accessibility checklist.",
+    "spacing": [
+      "4px base unit",
+      "12px within controls",
+      "24px between related groups",
+      "64px between narrative sections"
+    ],
+    "shape": "Precise, compact corners",
+    "principleDetails": [
+      "A component is useful when its states, properties and implementation can be examined together.",
+      "A limited set of named variations helps teams reuse the component without rebuilding the system.",
+      "Keyboard, semantics and status feedback belong alongside the default visual specimen."
+    ]
+  },
+  "common-ground": {
+    "name": "Common Ground",
+    "systemName": "Evidence notebook",
+    "thesis": "A patient editorial space that keeps observations close to their sources.",
+    "font": "Newsreader",
+    "displayFamily": "Newsreader",
+    "utilityFamily": "DM Sans",
+    "palettePrefix": "research",
+    "voice": "A better question changes the work.",
+    "sample": "Stay close to the evidence.",
+    "principles": [
+      "Keep observation separate from interpretation.",
+      "Carry source IDs and counterexamples into synthesis.",
+      "Use photography as context, never as proof of fieldwork."
+    ],
+    "references": [
+      {
+        "name": "Dovetail",
+        "url": "https://dovetail.com",
+        "note": "Linked research evidence, source retrieval and traceable synthesis across a study."
+      }
+    ],
+    "hero": {
+      "src": "/images/projects/common-ground-ui.webp",
+      "alt": "A warm paper-toned research notebook showing a home-energy study, source excerpts grouped by trust, permission and timing, and a traceable interpretation panel.",
+      "width": 1487,
+      "height": 1058,
+      "caption": "Generated product interface \u00b7 Common Ground"
+    },
+    "description": "A warm paper-toned research notebook showing a home-energy study, source excerpts grouped by trust, permission and timing, and a traceable interpretation panel.",
+    "spacing": [
+      "4px base unit",
+      "12px within controls",
+      "24px between related groups",
+      "64px between narrative sections"
+    ],
+    "shape": "Editorial edges and restrained rules",
+    "principleDetails": [
+      "A source excerpt and a researcher\u2019s explanation are different objects and should remain distinguishable.",
+      "A strong synthesis can be retraced to evidence, including material that challenges the preferred interpretation.",
+      "The generated house image establishes the study\u2019s setting; participant evidence requires actual research."
+    ]
+  },
+  "plainly": {
+    "name": "Plainly",
+    "systemName": "Breathing room",
+    "thesis": "An accessible service voice that gives people a clear next step.",
+    "font": "Manrope",
+    "displayFamily": "Manrope",
+    "utilityFamily": "Manrope",
+    "palettePrefix": "plainly",
+    "voice": "Clarity when it matters most.",
+    "sample": "A little more breathing room.",
+    "principles": [
+      "Explain the consequence before the commitment.",
+      "Use one clear action and a practical route to a person.",
+      "Test understanding instead of asking which wording people prefer."
+    ],
+    "references": [
+      {
+        "name": "Monzo",
+        "url": "https://monzo.com/ie/money-worries",
+        "note": "Plain, considerate language and practical help routes for people worried about money."
+      }
+    ],
+    "hero": {
+      "src": "/images/projects/plainly-ui.webp",
+      "alt": "A calm blue utility support portal with three help routes, a contact-request panel and clear wording that the request does not commit the person to a payment plan.",
+      "width": 1487,
+      "height": 1058,
+      "caption": "Generated product interface \u00b7 Plainly"
+    },
+    "description": "A calm blue utility support portal with three help routes, a contact-request panel and clear wording that the request does not commit the person to a payment plan.",
+    "spacing": [
+      "4px base unit",
+      "12px within controls",
+      "24px between related groups",
+      "64px between narrative sections"
+    ],
+    "shape": "Soft service surfaces",
+    "principleDetails": [
+      "Before someone continues, the interface explains what will change and what will not.",
+      "The service offers a finite next step and a route to a person when the available options do not fit.",
+      "Good wording helps a person explain the next step in their own words, not simply prefer its tone."
+    ]
+  },
+  "waypoint": {
+    "name": "Waypoint",
+    "systemName": "Decision architecture",
+    "thesis": "A bold, legible strategy that makes ownership and trade-offs tangible.",
+    "font": "Archivo",
+    "displayFamily": "Archivo",
+    "utilityFamily": "Archivo",
+    "palettePrefix": "waypoint",
+    "voice": "Fewer bets. Clearer commitments.",
+    "sample": "A direction teams can act on.",
+    "principles": [
+      "Name the owner and the decision that needs to be made.",
+      "Fund adoption and integration alongside the shared platform.",
+      "Make the work being deferred as visible as the chosen work."
+    ],
+    "references": [
+      {
+        "name": "Jira Product Discovery",
+        "url": "https://www.atlassian.com/software/jira/product-discovery",
+        "note": "Explicit prioritisation, ownership and a roadmap connected to delivery."
+      }
+    ],
+    "hero": {
+      "src": "/images/projects/waypoint-ui.webp",
+      "alt": "A yellow and ink strategy workspace with Now, Next and Later initiatives, a three-lane 90-day roadmap and a decision record explaining what the team will defer.",
+      "width": 1487,
+      "height": 1058,
+      "caption": "Generated product interface \u00b7 Waypoint"
+    },
+    "description": "A yellow and ink strategy workspace with Now, Next and Later initiatives, a three-lane 90-day roadmap and a decision record explaining what the team will defer.",
+    "spacing": [
+      "4px base unit",
+      "12px within controls",
+      "24px between related groups",
+      "64px between narrative sections"
+    ],
+    "shape": "Precise, compact corners",
+    "principleDetails": [
+      "A strategy becomes actionable when someone owns the decision and knows when it will be reviewed.",
+      "Shared foundations need migration, squad integration and support capacity; those costs are part of the bet.",
+      "A decision record explains which work moves later and why, making prioritisation accountable."
+    ]
+  },
+  "afterhours": {
+    "name": "Afterhours",
+    "systemName": "After the lights go down",
+    "thesis": "Cinema photography and editorial type, held together by a practical programme.",
+    "font": "Bodoni Moda",
+    "displayFamily": "Bodoni Moda",
+    "utilityFamily": "DM Sans",
+    "palettePrefix": "cinema",
+    "voice": "Good films. Better company.",
+    "sample": "Stay for the credits.",
+    "principles": [
+      "Let the film earn attention; keep showtimes easy to scan.",
+      "Give editorial titles scale and utility labels restraint.",
+      "Preserve a clear handoff from discovery to ticketing."
+    ],
+    "references": [
+      {
+        "name": "Everyman Cinema",
+        "url": "https://www.everymancinema.com",
+        "note": "Venue-based film discovery and direct access to booking."
+      },
+      {
+        "name": "MUBI",
+        "url": "https://mubi.com",
+        "note": "A photography-led editorial approach to discovering cinema."
+      }
+    ],
+    "hero": {
+      "src": "/images/projects/afterhours-ui.webp",
+      "alt": "An ink-black and oxblood cinema programme featuring a rain-lit Melbourne tram film still, a large film title and an adjacent screening selector with a clear booking action.",
+      "width": 1487,
+      "height": 1058,
+      "caption": "Generated product interface \u00b7 Afterhours"
+    },
+    "description": "An ink-black and oxblood cinema programme featuring a rain-lit Melbourne tram film still, a large film title and an adjacent screening selector with a clear booking action.",
+    "spacing": [
+      "4px base unit",
+      "12px within controls",
+      "24px between related groups",
+      "64px between narrative sections"
+    ],
+    "shape": "Editorial edges and restrained rules",
+    "principleDetails": [
+      "Film photography sets the mood while dates, durations and screening times remain practical.",
+      "Expressive display typography belongs with the programme, while navigation and booking text stay quiet.",
+      "The selected film and screening must survive the transition into the ticketing service."
+    ]
+  }
+}

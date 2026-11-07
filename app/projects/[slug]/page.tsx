@@ -1,3 +1,10 @@
+import { ProjectIdentityNav } from "@/components/ProjectIdentityNav";
+import { getProjectWorld, type ProjectImage } from "@/lib/project-worlds";
+import Image from "next/image";
+import showcase from "@/content/showcase.json";
+import { ProjectVisual } from "@/components/ProjectVisual";
+import { ProjectPlayground } from "@/components/ProjectPlayground";
+import { getProjectDemo } from "@/lib/project-demos";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -22,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!c) return {};
   return {
     title: c.title,
-    description: c.summary,
+    description: `${c.fictional ? "Fictional teaching example. " : ""}${c.summary}`,
     alternates: { types: { "text/markdown": `/projects/${c.slug}.md` } },
   };
 }
@@ -35,6 +42,8 @@ export default async function CaseStudyPage({ params }: Props) {
   const all = getCaseStudies();
   const next = all[(all.findIndex((c) => c.slug === slug) + 1) % all.length];
   const site = getSite();
+  const demo = getProjectDemo(study.theme);
+  const world = getProjectWorld(study.slug);
   const meta = [
     ["Role", study.role],
     ["Timeline", study.timeline],
@@ -43,8 +52,9 @@ export default async function CaseStudyPage({ params }: Props) {
   ].filter(([, v]) => v) as [string, string][];
 
   return (
-    <article>
-      <Container className="pt-16 md:pt-24">
+    <article data-world={demo ? study.theme : undefined} className={demo ? "case-world" : undefined}>
+      <Container className="case-opening pt-8 md:pt-10">
+        {world && <ProjectIdentityNav slug={study.slug} />}
         <div className="enter flex items-center justify-between gap-4 text-small">
           <Link href="/projects" className="inline-flex items-center gap-1.5 text-fg-muted hover:text-fg">
             <ArrowLeft width={16} height={16} /> Work
@@ -53,7 +63,7 @@ export default async function CaseStudyPage({ params }: Props) {
             View as Markdown
           </a>
         </div>
-        <header className="mt-10 max-w-4xl">
+        <header className="case-intro mt-10 max-w-4xl">
           <TagList tags={study.tags} className="enter" />
           <h1 className="enter mt-6 text-display font-semibold text-balance" style={{ "--i": 1 } as React.CSSProperties}>
             {study.title}
@@ -62,6 +72,7 @@ export default async function CaseStudyPage({ params }: Props) {
             {study.catchphrase}
           </p>
         </header>
+        {study.fictional && <p className="case-disclosure mt-8">{showcase.caseNotice}</p>}
         {meta.length > 0 && (
           <dl
             className="enter mt-12 grid grid-cols-2 gap-6 border-t border-border-subtle pt-8 md:grid-cols-4"
@@ -75,10 +86,25 @@ export default async function CaseStudyPage({ params }: Props) {
             ))}
           </dl>
         )}
-        <div className="enter mt-14" style={{ "--i": 4 } as React.CSSProperties}>
-          <Media img={study.cover} ratio="16/9" sizes="100vw" priority />
+        <div id="project-preview" className="case-artwork enter mt-14 scroll-mt-24" style={{ "--i": 4 } as React.CSSProperties}>
+          {demo && study.theme ? <ProjectVisual theme={study.theme} priority /> : <Media img={study.cover} ratio="16/9" sizes="100vw" priority />}
         </div>
+        {world && <div className="artwork-caption"><p>{world.hero.caption}</p><a href={world.hero.src} target="_blank" rel="noopener noreferrer">View full-resolution image</a></div>}
       </Container>
+
+      {demo && study.theme && <Container className="pt-10">
+        <nav className="case-jump" aria-label="Explore this case study">
+          <a href="#try-it">{study.theme === "relay" ? "Play the investigation" : "Interactive exercise"}</a>
+          <Link href={`/projects/${study.slug}/design-system`}>Explore the design system</Link>
+          {study.sections.map(s => <a href={`#${s.id}`} key={s.id}>{s.title}</a>)}
+        </nav>
+        <div className="case-learning mt-10">
+          <h2 className="text-heading font-medium">{showcase.learningTitle}</h2>
+          <ul>{study.skills.map(skill => <li key={skill}>{skill}</li>)}</ul>
+          <p>{study.lesson}</p>
+        </div>
+        <div className="mt-10"><ProjectPlayground theme={study.theme} demo={demo} /></div>
+      </Container>}
 
       <Container className="py-section">
         <div className="grid gap-12 lg:grid-cols-[12rem_1fr] lg:gap-20">
@@ -95,7 +121,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </nav>
           <div className="max-w-reading space-y-24">
             {study.sections.map((s) => (
-              <CaseSection key={s.id} section={s} />
+              <CaseSection key={s.id} section={s} image={world?.sectionImages?.[s.id]} />
             ))}
           </div>
         </div>
@@ -133,7 +159,8 @@ export default async function CaseStudyPage({ params }: Props) {
           "@type": "CreativeWork",
           name: study.title,
           headline: study.catchphrase,
-          abstract: study.summary,
+          abstract: `${study.fictional ? "Fictional teaching example. " : ""}${study.summary}`,
+          ...(study.fictional ? { genre: "Fictional portfolio teaching example" } : {}),
           url: absoluteUrl(`/projects/${study.slug}`),
           creator: { "@type": "Person", name: site.name, jobTitle: study.role ?? site.role },
           keywords: [...study.tags, ...study.tools].join(", "),
@@ -144,18 +171,19 @@ export default async function CaseStudyPage({ params }: Props) {
   );
 }
 
-function CaseSection({ section }: { section: CaseStudySection }) {
+function CaseSection({ section, image }: { section: CaseStudySection; image?: ProjectImage }) {
   const ai = section.id === "how-i-used-ai";
   return (
     <section
       id={section.id}
-      className={cn("reveal scroll-mt-28", ai && "rounded-card bg-bg-subtle p-8 ring-1 ring-border-subtle md:p-10")}
+      className={cn("case-section reveal scroll-mt-28", ai && "rounded-card bg-bg-subtle p-8 ring-1 ring-border-subtle md:p-10")}
     >
       <h2 className="flex items-center gap-2 text-caption font-semibold tracking-wide text-accent uppercase">
         {ai && <Sparkle width={16} height={16} />}
         {section.title}
       </h2>
       {section.tldr && <p className="mt-4 text-title font-semibold text-balance">{section.tldr}</p>}
+      {image && <figure className="case-section-image"><a href={image.src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size image: ${section.title}`}><Image src={image.src} width={image.width} height={image.height} alt={image.alt} sizes="(max-width: 768px) 90vw, 672px" /></a><figcaption>{image.caption}</figcaption></figure>}
       {section.body && <Markdown className="mt-8">{section.body}</Markdown>}
     </section>
   );

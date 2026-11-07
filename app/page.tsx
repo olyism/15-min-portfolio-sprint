@@ -1,3 +1,4 @@
+import showcase from "@/content/showcase.json";
 import { Button } from "@/components/Button";
 import { Container, Section, SectionHeader } from "@/components/Container";
 import { ArrowRight } from "@/components/icons";
@@ -19,10 +20,6 @@ export default function HomePage() {
         <div className="enter flex flex-wrap items-center gap-x-4 gap-y-2 text-small text-fg-muted">
           {site.availability && (
             <span className="inline-flex items-center gap-2 rounded-pill bg-bg-subtle px-3 py-1 font-medium text-fg">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-positive opacity-60 motion-reduce:hidden" />
-                <span className="relative inline-flex size-2 rounded-full bg-positive" />
-              </span>
               {site.availability}
             </span>
           )}
@@ -48,6 +45,7 @@ export default function HomePage() {
       {lead && (
         <Container className="pb-section">
           <h2 className="sr-only">Selected work</h2>
+          <p className="showcase-notice mb-10">{showcase.notice}</p>
           <div className="enter" style={{ "--i": 4 } as React.CSSProperties}>
             <ProjectCard project={lead} size="large" />
           </div>
@@ -71,7 +69,7 @@ export default function HomePage() {
         <section className="border-y border-border-subtle bg-bg-subtle py-16">
           <Container>
             <p className="text-center text-caption font-medium tracking-wide text-fg-subtle uppercase">
-              Teams I&apos;ve worked with
+              {showcase.companiesLabel}
             </p>
             <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
               {site.workedWith.map((name) => (
@@ -89,11 +87,11 @@ export default function HomePage() {
         <Section>
           <Container>
             <SectionHeader
-              eyebrow="Writing"
+              eyebrow="Resources"
               title="Notes on design, code and AI"
               action={
                 <Button href="/blog" variant="ghost">
-                  All writing <ArrowRight />
+                  All resources <ArrowRight />
                 </Button>
               }
             />

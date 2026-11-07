@@ -15,7 +15,7 @@ export function Header({ name, nav }: { name: string; nav: NavItem[] }) {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <header className="no-print sticky top-0 z-50 border-b border-border-subtle bg-bg/75 backdrop-blur-xl backdrop-saturate-150">
+    <header className="site-header no-print sticky top-0 z-50 border-b border-border-subtle">
       <nav className="mx-auto box-content flex h-16 max-w-content items-center justify-between gap-6 px-gutter">
         <Link href="/" className="text-small font-semibold tracking-tight" onClick={() => setOpen(false)}>
           {name}
@@ -27,7 +27,7 @@ export function Header({ name, nav }: { name: string; nav: NavItem[] }) {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className="rounded-pill px-3 py-1.5 text-small text-fg-muted transition-colors hover:text-fg aria-[current=page]:text-fg aria-[current=page]:font-medium"
+              className="rounded-pill px-3 py-1.5 text-small text-fg transition-colors hover:underline aria-[current=page]:font-medium"
             >
               {item.label}
             </Link>
@@ -59,7 +59,7 @@ export function Header({ name, nav }: { name: string; nav: NavItem[] }) {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={cn("block py-2.5 text-title font-semibold text-fg-muted aria-[current=page]:text-fg")}
+                className={cn("block py-2.5 text-title font-semibold text-fg")}
               >
                 {item.label}
               </Link>

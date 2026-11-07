@@ -73,6 +73,12 @@ export type CaseStudy = {
   year?: string | number;
   featured: boolean;
   order: number;
+  company?: string;
+  specialty?: string;
+  theme?: string;
+  fictional: boolean;
+  skills: string[];
+  lesson?: string;
   cover: Img;
   gallery: Img[];
   sections: CaseStudySection[];
@@ -138,6 +144,12 @@ export function getCaseStudies(): CaseStudy[] {
       year: data.year,
       featured: Boolean(data.featured),
       order: data.order ?? 99,
+      company: data.company,
+      specialty: data.specialty,
+      theme: data.theme,
+      fictional: Boolean(data.fictional),
+      skills: data.skills ?? [],
+      lesson: data.lesson,
       cover: toImg(data.cover ?? data.heroImage, data.coverPrompt),
       gallery: (data.gallery ?? []).map((g: unknown) => toImg(g)),
       sections: parseSections(content),

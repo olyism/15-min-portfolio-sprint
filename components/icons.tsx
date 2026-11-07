@@ -85,3 +85,9 @@ export const Printer = (p: P) => (
     <rect x="7" y="14" width="10" height="7" rx="1" />
   </svg>
 );
+
+export function RelayGlyph({ type }: { type: "play" | "pause" | "done" | "review" }) {
+  return <svg className="relay-glyph" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {type === "play" ? <path d="m7 4 9 6-9 6Z" fill="currentColor" /> : type === "pause" ? <><path d="M7 5v10M13 5v10" /></> : type === "done" ? <path d="m4 10 4 4 8-8" /> : <path d="m10 3 7 7-7 7-7-7Z" />}
+  </svg>;
+}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { getProjectWorld } from "@/lib/project-worlds";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/Button";
@@ -7,7 +9,7 @@ import { Markdown } from "@/components/Markdown";
 import { Placeholder } from "@/components/Media";
 import { Tag } from "@/components/Tag";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { getMoodboard, getVoice } from "@/lib/content";
+import { getCaseStudies, getMoodboard, getVoice } from "@/lib/content";
 import { getTokenGroups, type Token } from "@/lib/tokens";
 
 export const metadata: Metadata = {
@@ -15,10 +17,16 @@ export const metadata: Metadata = {
   description: "The tokens, components, voice and imagery behind this site.",
 };
 
-const SECTIONS = ["Colour", "Typography", "Spacing", "Radius", "Elevation", "Motion", "Components", "Voice", "Imagery"];
+const SECTIONS = ["Colour", "Typography", "Spacing", "Radius", "Elevation", "Motion", "Project systems", "Project worlds", "Components", "Voice", "Imagery"];
 
 export default function DesignSystemPage() {
-  const groups = Object.fromEntries(getTokenGroups().map((g) => [g.name, g.tokens]));
+  const tokenGroups = getTokenGroups();
+  const groups = Object.fromEntries(tokenGroups.map((g) => [g.name, g.tokens]));
+  const extraGroups = tokenGroups.filter(g => !["Colour", "Typography", "Spacing", "Radius", "Elevation", "Motion"].includes(g.name));
+  const projectWorlds = getCaseStudies().flatMap(study => {
+    const world = getProjectWorld(study.slug);
+    return world ? [{ slug: study.slug, ...world }] : [];
+  });
   const voice = getVoice();
   const moodboard = getMoodboard();
 
@@ -46,7 +54,7 @@ export default function DesignSystemPage() {
           <ul className="-mx-2 flex gap-1 overflow-x-auto py-2 text-small [scrollbar-width:none]">
             {SECTIONS.map((s) => (
               <li key={s}>
-                <a href={`#${s.toLowerCase()}`} className="block rounded-pill px-3 py-1.5 whitespace-nowrap text-fg-muted hover:bg-bg-subtle hover:text-fg">
+                <a href={`#${s.toLowerCase().replace(/\s+/g, "-")}`} className="block rounded-pill px-3 py-1.5 whitespace-nowrap text-fg-muted hover:bg-bg-subtle hover:text-fg">
                   {s}
                 </a>
               </li>
@@ -56,6 +64,10 @@ export default function DesignSystemPage() {
       </nav>
 
       <Container className="space-y-32 py-20 md:py-28">
+        <Block id="project-systems" title="Seven independent design systems" lead="Each case study has its own brand, product imagery, typography and foundations. Open a project to explore its system.">
+          <div className="project-system-list">{projectWorlds.map(world => <Link key={world.slug} href={`/projects/${world.slug}/design-system`}><strong>{world.name}</strong><span>{world.systemName} · {world.displayFamily}</span></Link>)}</div>
+        </Block>
+
         {/* Colour */}
         <Block id="colour" title="Colour" lead="Each colour has a light and a dark value. Utility classes use the name, e.g. bg-bg-subtle or text-fg-muted.">
           <div className="grid grid-cols-1 [&>*]:min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -179,6 +191,20 @@ export default function DesignSystemPage() {
             </div>
           </div>
         </Block>
+
+        {extraGroups.length > 0 && <Block id="project-worlds" title="Project worlds" lead="Each case study has a scoped identity. These palettes and project tokens are read directly from app/tokens.css, including both themes.">
+          <div className="space-y-16">
+            {extraGroups.map(group => <section key={group.name} aria-label={group.name}>
+              <h3 className="mb-6 text-heading font-semibold">{group.name}</h3>
+              <div className="grid grid-cols-1 gap-4 [&>*]:min-w-0 sm:grid-cols-2 lg:grid-cols-3">
+                {group.tokens.map(token => token.light ? <Swatch key={token.name} token={token} /> : <div className="rounded-lg bg-bg-subtle p-6" key={token.name}>
+                  <TokenLabel token={token} />
+                  {token.name.startsWith("font-") && <p className="mt-4 text-title" style={{ fontFamily: `var(--${token.name})` }}>Aa Bb 0123</p>}
+                </div>)}
+              </div>
+            </section>)}
+          </div>
+        </Block>}
 
         {/* Components */}
         <Block id="components" title="Components" lead="A small set in components/. Build new pages by combining these.">

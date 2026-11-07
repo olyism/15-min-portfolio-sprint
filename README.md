@@ -2,11 +2,14 @@
 
 **A clean, fast portfolio for designers, set up by your AI agent.** Clone it, tell your AI tool *"Set up my portfolio"*, and go from your LinkedIn profile to a live site with your own design system, case studies and resume.
 
-It starts plain and Apple-clean on purpose, so your personality is what stands out.
+The shared portfolio shell stays simple. Seven fictional projects demonstrate how individual case studies can have their own visual identity. Replace the examples with your own work when you personalise the starter.
 
 ## What you get
 
-- **Home:** a big headline, featured work, the teams you've worked with, recent writing and a contact band
+- **Home:** a big headline, featured work, the fictional project collection, recent resources and a contact band
+- **Seven example disciplines:** AI product design, senior product design, design engineering, research, content design, leadership and agency practice
+- **Independent project identities:** each example has its own typography, colour palette, generated product imagery and `/projects/[slug]/design-system` page
+- **Local interactive examples:** Relay pairs an investigation graph with an agent console and human approval; all seven examples run without model calls or visitor token costs
 - **Case studies** in a story order that hiring managers (and their AI tools) can follow: **What → Problem → How I solved it → Impact**, plus an optional **How I used AI** section
 - **Resume** that's a real page, and prints to a clean one-page PDF
 - **Design system** page that shows your colours, type, spacing and components, plus your **tone of voice** and **image style**, read live from your code

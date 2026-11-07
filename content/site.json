@@ -1,26 +1,58 @@
 {
-  "name": "Sam Rivera",
+  "name": "A Product Designer",
   "role": "Product designer & design engineer",
-  "location": "Melbourne · Remote",
+  "location": "Melbourne \u00b7 Remote",
   "url": "https://example.com",
-  "description": "Sam Rivera is an AI-first product designer and design engineer who turns fuzzy problems into shipped products that move revenue, cost and speed.",
-  "headline": "I design products and build them, with AI in the loop.",
-  "intro": "Product designer and design engineer. I take teams from a fuzzy problem to a shipped product, prototyping in code and using AI to test more ideas in less time.",
+  "description": "Seven fictional design case studies with distinct visual identities and working local prototypes. A portfolio starter for designers.",
+  "headline": "Seven ways to make a difference.",
+  "intro": "A sample portfolio exploring the craft of design: AI systems, everyday products, code, research, language, leadership and independent practice.",
   "email": "hello@example.com",
-  "availability": "Open to new projects from March",
+  "availability": "Fictional portfolio collection",
   "bookingUrl": "",
   "socials": [
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/" },
-    { "label": "GitHub", "url": "https://github.com/" },
-    { "label": "Read.cv", "url": "https://read.cv/" }
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/"
+    },
+    {
+      "label": "Read.cv",
+      "url": "https://read.cv/"
+    }
   ],
   "nav": [
-    { "label": "Work", "href": "/projects" },
-    { "label": "Writing", "href": "/blog" },
-    { "label": "Resume", "href": "/resume" },
-    { "label": "Design system", "href": "/design-system" },
-    { "label": "Contact", "href": "/contact" }
+    {
+      "label": "Work",
+      "href": "/projects"
+    },
+    {
+      "label": "Resources",
+      "href": "/blog"
+    },
+    {
+      "label": "Resume",
+      "href": "/resume"
+    },
+    {
+      "label": "Design system",
+      "href": "/design-system"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
   ],
-  "workedWith": ["Northwind", "Lumen Health", "Fieldwork", "Parallel", "Kitebank", "Orbit Labs"],
+  "workedWith": [
+    "Relay",
+    "Tandem",
+    "Formwork",
+    "Common Ground",
+    "Plainly",
+    "Waypoint",
+    "Afterhours"
+  ],
   "credit": true
 }

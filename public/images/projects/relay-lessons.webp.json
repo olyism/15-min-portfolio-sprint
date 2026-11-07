@@ -1,0 +1,4 @@
+{
+  "prompt": "Edit this exact Relay screenshot. Preserve the entire beautiful graphite/lavender UI and all its layout, typography and controls. Remove every numeric confidence score, confidence percentage, and the little numeric Uncertainty/coverage indicator at the bottom. Replace those short labels with concrete status text: expired source card 'Version mismatch'; fresh source card 'Version matches service'; bottom source coverage 'Runbook freshness / Needs refresh'. Do not introduce any confidence scores. Everything else identical, high resolution landscape.",
+  "createdAt": "2026-11-07T05:33:10.705Z"
+}

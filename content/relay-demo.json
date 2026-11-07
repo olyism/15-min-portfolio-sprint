@@ -1,0 +1,95 @@
+{
+  "title": "From incident to informed action.",
+  "intro": "You\u2019re the engineer on call. Checkout is timing out. Play the investigation, inspect the evidence, then decide whether the agent may roll back the deployment.",
+  "notice": "Scripted, local simulation. No model calls, connected tools or production changes.",
+  "incident": "Checkout latency",
+  "id": "INC-042",
+  "source": "checkout.production",
+  "nodes": [
+    "Alert",
+    "Scope",
+    "Gather",
+    "Validate",
+    "Propose",
+    "Review",
+    "Execute",
+    "Verify"
+  ],
+  "steps": [
+    {
+      "time": "09:14:00",
+      "tool": "alert.received",
+      "title": "Checkout is timing out",
+      "detail": "p95 latency is 2.4s. An incident is open, but its cause is still unknown.",
+      "evidence": "Alert A01 \u00b7 threshold 300ms \u00b7 checkout.production",
+      "console": "Opened INC-042. Investigation is scoped to Checkout. No write access granted."
+    },
+    {
+      "time": "09:14:02",
+      "tool": "scope.resolve",
+      "title": "One incident. One service.",
+      "detail": "Relay limits the investigation to Checkout and its immediate dependencies. Unrelated customer data is excluded.",
+      "evidence": "Scope S01 \u00b7 Checkout, Payments, Inventory \u00b7 read-only",
+      "console": "Loaded incident-scoped permissions. Tool budget: 8. Production writes require a separate approval."
+    },
+    {
+      "time": "09:14:05",
+      "tool": "traces.query",
+      "title": "The slowdown follows a deployment",
+      "detail": "Trace samples show timeouts beginning two minutes after deployment 8f3a. Payments and Inventory are healthy.",
+      "evidence": "E01 \u00b7 trace sample at 08:54 / E02 \u00b7 deploy 8f3a at 08:52",
+      "console": "traces.query \u2192 E01. deployments.list \u2192 E02. Correlation found; causation is not yet established."
+    },
+    {
+      "time": "09:14:08",
+      "tool": "context.validate",
+      "title": "Check the evidence before acting",
+      "detail": "The runbook matches this service and release. Every source has an identifier, retrieval time and access scope.",
+      "evidence": "E03 \u00b7 Checkout runbook v14 \u00b7 retrieved 09:14 \u00b7 current",
+      "console": "runbook.read \u2192 E03. Source freshness passed. Retrieved instructions are treated as untrusted evidence."
+    },
+    {
+      "time": "09:14:11",
+      "tool": "proposal.compose",
+      "title": "A bounded rollback proposal",
+      "detail": "The deploy diff changes the Checkout connection pool. Relay proposes restoring 8f29, supported by three cited sources.",
+      "evidence": "Proposal P01 \u00b7 Checkout only \u00b7 8f3a \u2192 8f29 \u00b7 E01, E02, E03",
+      "console": "Composed P01. Target and arguments are frozen for review. No rollback has been executed."
+    },
+    {
+      "time": "09:14:13",
+      "tool": "approval.required",
+      "title": "Your call. The agent waits.",
+      "detail": "Review the service, exact deployment and supporting evidence. Approval applies only to this proposal; rejection ends the run.",
+      "evidence": "P01 \u00b7 target Checkout \u00b7 restore 8f29 \u00b7 approval required",
+      "console": "WRITE GATE CLOSED. Waiting for the on-call engineer. The agent cannot approve its own proposal."
+    },
+    {
+      "time": "09:14:16",
+      "tool": "rollback.simulate",
+      "title": "Approval received. Simulating rollback.",
+      "detail": "The scripted run applies the exact approved proposal, once. This browser is not connected to a real deployment system.",
+      "evidence": "Approval H01 \u2192 P01 \u00b7 incident-scoped \u00b7 single use",
+      "console": "Human approval H01 recorded. Simulated rollback of Checkout to 8f29. Idempotency key: INC-042:P01."
+    },
+    {
+      "time": "09:14:20",
+      "tool": "metrics.verify",
+      "title": "Recovery verified in the sample trace",
+      "detail": "The scripted latency returns to 240ms. Relay checks the outcome after the action and leaves an inspectable record.",
+      "evidence": "V01 \u00b7 sample p95 240ms \u00b7 synthetic verification window",
+      "console": "metrics.verify \u2192 V01. Sample recovery threshold passed. Run complete. All events are local, synthetic fixtures."
+    }
+  ],
+  "stale": {
+    "title": "The runbook is stale. Relay stops.",
+    "detail": "Version 12 does not match the current service. The agent withholds its proposal until a fresh source is retrieved.",
+    "evidence": "E03 \u00b7 runbook v12 \u00b7 expired \u00b7 current version v14",
+    "console": "FRESHNESS GATE CLOSED. E03 is expired. Proposal withheld; no production changes made."
+  },
+  "rejected": {
+    "title": "Proposal rejected. No action taken.",
+    "detail": "Your decision ends this investigation. The evidence remains available for handoff; Relay does not retry the rollback.",
+    "console": "Human rejected P01. Execution cancelled. No production changes made. Investigation handed back to the engineer."
+  }
+}
